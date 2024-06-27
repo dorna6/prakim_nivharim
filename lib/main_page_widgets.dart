@@ -3,13 +3,15 @@
 //
 
 // package imports
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 // my imports
 import 'theme_widgets.dart';
 import 'main_image_widgets.dart';
 import 'dark_mode_switch.dart';
-import 'prakim_nivharim.dart';
+import 'blessing_widget.dart';
+import 'main_text_widget.dart';
 
 //
 //
@@ -19,12 +21,10 @@ import 'prakim_nivharim.dart';
 ////////////////////////////////
 
 class MainPageAppBar {
-  static Row row({
-    required BuildContext context,
-    required bool isDarkMode,
-    required ThemeProvider themeProvider,
-    required String appTitleText,
-  }) {
+  static Row row(
+      {required BuildContext context,
+      required bool isDarkMode,
+      required ThemeProvider themeProvider}) {
     return Row(
       children: [
         SizedBox(width: 1),
@@ -44,7 +44,7 @@ class MainPageAppBar {
               borderRadius: BorderRadius.circular(16.0),
             ),
             child: Text(
-              appTitleText,
+              'פרקים נבחרים',
               style: TextStyle(
                 fontSize: 26,
                 fontFamily: 'DavidLibre',
@@ -72,28 +72,7 @@ class MainPageBody {
     required bool isDarkMode,
     required ThemeProvider themeProvider,
   }) {
-
     final ScrollController _scrollController = ScrollController();
-
-    final TextStyle textStyle1 = TextStyle(
-      fontSize: 14,
-      fontFamily: 'DavidLibre',
-      fontWeight: FontWeight.w400,
-      color: Theme.of(context).colorScheme.secondary,
-    );
-
-    final TextStyle textStyle2 = TextStyle(
-      fontSize: 18,
-      fontFamily: 'DavidLibre',
-      fontWeight: FontWeight.w500,
-      color: Theme.of(context).colorScheme.secondary,
-    );
-
-    // define shadow variabels
-    final BoxShadow boxShadowMenuLine = BoxShadow(
-        color: Color(0xFFc4c4c4),
-        spreadRadius: 0,
-        blurRadius: 4);
 
     return Scrollbar(
       controller: _scrollController,
@@ -109,8 +88,7 @@ class MainPageBody {
             title: MainPageAppBar.row(
                 context: context,
                 isDarkMode: isDarkMode,
-                themeProvider: themeProvider,
-                appTitleText: 'התיקון הכללי'),
+                themeProvider: themeProvider),
             flexibleSpace: FlexibleSpaceBar(
               collapseMode: CollapseMode.parallax,
               centerTitle: false,
@@ -126,175 +104,28 @@ class MainPageBody {
                 return Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    // tikon haklali text
+                    // main text
                     Padding(
                       padding: const EdgeInsets.only(
                           left: 25.0, right: 25.0, top: 0.0),
-                      child: prakimNivharim.column(context: context),
+                      child: mainTextWidget.column(context: context),
                     ),
 
+                    // Spacer between elements
+                    SizedBox(
+                        height: 15, width: MediaQuery.of(context).size.width),
 
+                    // blessing widget
+                    BlessingWidget(),
 
-
-            ///////////////////////////////////////////////
-
-
-
-            // Spacer between elements
-            SizedBox(height: 15, width: MediaQuery.of(context).size.width),
-
-            Container(
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(15),
-                  color: Theme.of(context).colorScheme.background,
-                  boxShadow: [boxShadowMenuLine]),
-              width: MediaQuery.of(context).size.width * 0.9,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Expanded(
-                    child: Column(
-                      children: [
-
-                        Container(
-                          // decoration: BoxDecoration(
-                          //     borderRadius: BorderRadius.circular(15),
-                          //     color: Theme.of(context).colorScheme.primary,
-                          //     boxShadow: [boxShadowMenuLine]),
-                          padding: const EdgeInsets.all(16),
-                          width: double.infinity,
-                          child: Column(
-                            children: [
-                              Text('לרפואת', style: textStyle2),
-                              const SizedBox(height: 5),
-                              Text('הרב אופיר אור בן תמר שליט"א', style: textStyle1,
-                                textAlign: TextAlign.center,),
-                              const SizedBox(height: 5),
-                              Text('הרב אליעזר ברלנד בן עטיה שליט"א', style: textStyle1,
-                                textAlign: TextAlign.center,),
-                              const SizedBox(height: 5),
-                              Text('רועי טמסוט בן חוה', style: textStyle1,
-                                textAlign: TextAlign.center,),
-                              const SizedBox(height: 5),
-                              Text('דור נחמיאס בן אסתר', style: textStyle1,
-                                textAlign: TextAlign.center,),
-                              const SizedBox(height: 5),
-                            ],
-                          ),
-                        ),
-
-                        const SizedBox(height: 15),
-
-                        Container(
-                        //   decoration: BoxDecoration(
-                        //       borderRadius: BorderRadius.circular(15),
-                        //       color: Theme.of(context).colorScheme.primary,
-                        //       boxShadow: [boxShadowMenuLine]),
-                          padding: const EdgeInsets.all(16),
-                          width: double.infinity,
-                          child: Column(
-                            children: [
-                              Text('לעילוי נשמת',
-                                  style: textStyle2),
-                              const SizedBox(height: 5),
-                              Text('מכלוף בן ברידגט',
-                                  style: textStyle1),
-                              Text('משה בן יעקב',
-                                  style: textStyle1),
-                              Text('יעקב בן משה',
-                                  style: textStyle1),
-                            ],
-                          ),
-                        ),
-
-                      ],
-                    ),
-                  ),
-
-                  const SizedBox(width: 15),
-
-                  Expanded(
-                    child: Column(
-                      children: [
-
-                        Container(
-                          // decoration: BoxDecoration(
-                          //     borderRadius: BorderRadius.circular(15),
-                          //     color: Theme.of(context).colorScheme.primary,
-                          //     boxShadow: [boxShadowMenuLine]),
-                          padding: const EdgeInsets.all(16),
-                          width: double.infinity,
-                          child: Column(
-                            children: [
-                              Text('להצלחת', style: textStyle2),
-                              const SizedBox(height: 5),
-                              Text('הרב אופיר אור בן תמר שליט"א', style: textStyle1,
-                                textAlign: TextAlign.center,),
-                              const SizedBox(height: 5),
-                              Text('הרב אליעזר ברלנד בן עטיה שליט"א', style: textStyle1,
-                                textAlign: TextAlign.center,),
-                              const SizedBox(height: 5),
-                              Text('רועי טמסוט בן חוה', style: textStyle1,
-                                textAlign: TextAlign.center,),
-                              const SizedBox(height: 5),
-                              Text('דור נחמיאס בן אסתר', style: textStyle1,
-                                textAlign: TextAlign.center,),
-                              const SizedBox(height: 5),
-                              Text('מור נחמיאס בן נורית', style: textStyle1,
-                                textAlign: TextAlign.center,),
-                              const SizedBox(height: 5),
-                            ],
-                          ),
-                        ),
-
-                        const SizedBox(height: 15),
-
-                        Container(
-                          // decoration: BoxDecoration(
-                          //     borderRadius: BorderRadius.circular(15),
-                          //     color: Theme.of(context).colorScheme.primary,
-                          //     boxShadow: [boxShadowMenuLine]),
-                          padding: const EdgeInsets.all(16),
-                          width: double.infinity,
-                          child: Column(
-                            children: [
-                              Text('לזיוג הגון',
-                                  style: textStyle2),
-                              const SizedBox(height: 5),
-                              Text('מכלוף בן ברידגט',
-                                  style: textStyle1),
-                              Text('משה בן יעקב',
-                                  style: textStyle1),
-                              Text('יעקב בן משה',
-                                  style: textStyle1),
-                              Text('מרים בת חוה',
-                                  style: textStyle1),
-                            ],
-                          ),
-                        ),
-
-                      ],
-                    ),
-                  ),
-                ],
-              ),
-            ),
-
-                    SizedBox(height: 30, width: MediaQuery.of(context).size.width),
-
-
-            ////////////////////////////////////////////////
-
-
-
-                ],
-
+                    // end spacer
+                    SizedBox(
+                        height: 50, width: MediaQuery.of(context).size.width),
+                  ],
                 );
               },
               childCount: 1,
             ),
-
           ),
         ],
       ),
