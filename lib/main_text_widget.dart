@@ -1780,7 +1780,7 @@ class _mainTextWidget extends State<mainTextWidget>
         textSpan: TextSpan(
           children: <TextSpan>[
             TextSpan(
-              text: "כִּי הֶחֱלִיק אֵלָיו בְּעֵינָיו לִמְצֹא עֲוֹנוֹ לִשְׂנֹ",
+              text: "כִּי הֶחֱלִיק אֵלָיו בְּעֵינָיו לִמְצֹא עֲוֹנוֹ לִשְׂנֹא",
               style: textStyleSimpleText,
             ),
             TextSpan(
