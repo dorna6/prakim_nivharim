@@ -73,7 +73,7 @@ class ParallaxWidgetText extends StatelessWidget {
                         color: Color(0xff000000).withOpacity(0.1 * opacity),
                       ),
                     ],
-                    color: Color(0xFF3F3F3F).withOpacity(0.35 * opacity)),
+                    color: Color(0xFFffffff).withOpacity(0.6 * opacity)),
               ),
               TextSpan(
                 text: sub_text,
@@ -89,7 +89,7 @@ class ParallaxWidgetText extends StatelessWidget {
                         color: Color(0xff000000).withOpacity(0.3 * opacity),
                       ),
                     ],
-                    color: Color(0xFF3F3F3F).withOpacity(0.6 * opacity)),
+                    color: Color(0xFFffffff).withOpacity(0.8 * opacity)),
               ),
             ],
           ),
