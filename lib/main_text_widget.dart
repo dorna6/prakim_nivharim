@@ -135,7 +135,7 @@ class _mainTextWidget extends State<mainTextWidget>
     final String endOfPasokHeadStr = '  ';
 
     return Column(children: [
-      SizedBox(height: longSpace),
+      SizedBox(height: shortSpace),
 
       // CustomRichText(
       //   textAlign: TextAlign.center,
@@ -152,6 +152,7 @@ class _mainTextWidget extends State<mainTextWidget>
       //     ],
       //   ),
       // ),
+      SizedBox(height: shortSpace),
 
       CustomRichText(
         textAlign: TextAlign.center,
