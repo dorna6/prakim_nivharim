@@ -1,8 +1,11 @@
 // package import
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 
 // my import
 import 'custom_text_widget.dart';
+import 'main_image_widgets.dart';
 
 //
 //
@@ -11,10 +14,70 @@ import 'custom_text_widget.dart';
 // make a peket of text class //
 ////////////////////////////////
 
-class mainTextWidget {
-  static Column column({
-    required BuildContext context,
-  }) {
+class mainTextWidget extends StatefulWidget {
+  final BuildContext context;
+
+  const mainTextWidget({
+    Key? key,
+    required this.context,
+  }) : super(key: key);
+
+  @override
+  _mainTextWidget createState() => _mainTextWidget();
+}
+
+class _mainTextWidget extends State<mainTextWidget>
+    with TickerProviderStateMixin {
+  late final AnimationController _controller1;
+  late final Animation<double> _animation1;
+  late final AnimationController _controller2;
+  late final Animation<double> _animation2;
+  late final AnimationController _controller3;
+  late final Animation<double> _animation3;
+
+  @override
+  void initState() {
+    super.initState();
+
+    _controller1 = AnimationController(
+      duration: const Duration(seconds: 0, milliseconds: 0),
+      vsync: this,
+    );
+
+    _controller2 = AnimationController(
+      duration: const Duration(seconds: 0, milliseconds: 0),
+      vsync: this,
+    );
+    _controller3 = AnimationController(
+      duration: const Duration(seconds: 0, milliseconds: 0),
+      vsync: this,
+    );
+
+    _animation1 = Tween(begin: 0.0, end: 1.0).animate(_controller1);
+    _animation2 = Tween(begin: 0.0, end: 1.0).animate(_controller2);
+    _animation3 = Tween(begin: 0.0, end: 1.0).animate(_controller3);
+
+    Future.delayed(const Duration(milliseconds: 000), () {
+      _controller1.forward();
+    });
+    Future.delayed(const Duration(milliseconds: 000), () {
+      _controller2.forward();
+    });
+    Future.delayed(const Duration(milliseconds: 0000), () {
+      _controller3.forward();
+    });
+  }
+
+  @override
+  void dispose() {
+    _controller1.dispose();
+    _controller2.dispose();
+    _controller3.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
     // spaces between rows
     final double longSpace = 50.0;
     final double shortSpace = 20.0;
@@ -72,7 +135,24 @@ class mainTextWidget {
     final String endOfPasokHeadStr = '  ';
 
     return Column(children: [
-      SizedBox(height: shortSpace),
+      SizedBox(height: longSpace),
+
+      // CustomRichText(
+      //   textAlign: TextAlign.center,
+      //   alignment: Alignment.center,
+      //   textSpan: TextSpan(
+      //     children: <TextSpan>[
+      //       TextSpan(
+      //         text: "פרקים נבחרים",
+      //         style: textStyleSimpleTextHeadline.copyWith(
+      //           fontSize: 50,
+      //           fontWeight: FontWeight.w400,
+      //         ),
+      //       ),
+      //     ],
+      //   ),
+      // ),
+
       CustomRichText(
         textAlign: TextAlign.center,
         alignment: Alignment.center,
@@ -80,14 +160,12 @@ class mainTextWidget {
           children: <TextSpan>[
             TextSpan(
               text: "פרקים נבחרים",
-              style: textStyleSimpleTextHeadline.copyWith(
-                fontSize: 50,
-                fontWeight: FontWeight.w400,
-              ),
+              style: textStyleSimpleTextHeadline,
             ),
           ],
         ),
       ),
+
       SizedBox(height: shortSpace),
       // SizedBox(height: shortSpace),
       CustomRichText(
@@ -503,8 +581,7 @@ class mainTextWidget {
         textSpan: TextSpan(
           children: <TextSpan>[
             TextSpan(
-              text:
-              "נִשְׁכַּחְתִּי כְּמֵת מִלֵּב הָיִיתִי כִּכְלִי אֹבֵד",
+              text: "נִשְׁכַּחְתִּי כְּמֵת מִלֵּב הָיִיתִי כִּכְלִי אֹבֵד",
               style: textStyleSimpleText,
             ),
             TextSpan(
@@ -531,7 +608,7 @@ class mainTextWidget {
           children: <TextSpan>[
             TextSpan(
               text:
-              "כִּי שָׁמַעְתִּי דִּבַּת רַבִּים מָגוֹר מִסָּבִיב בְּהִוָּסְדָם יַחַד עָלַי לָקַחַת נַפְשִׁי זָמָמוּ",
+                  "כִּי שָׁמַעְתִּי דִּבַּת רַבִּים מָגוֹר מִסָּבִיב בְּהִוָּסְדָם יַחַד עָלַי לָקַחַת נַפְשִׁי זָמָמוּ",
               style: textStyleSimpleText,
             ),
             TextSpan(
@@ -558,7 +635,7 @@ class mainTextWidget {
           children: <TextSpan>[
             TextSpan(
               text:
-              "וַאֲנִי עָלֶיךָ בָטַחְתִּי יְהוָה אָמַרְתִּי אֱלֹהַי אָתָּה",
+                  "וַאֲנִי עָלֶיךָ בָטַחְתִּי יְהוָה אָמַרְתִּי אֱלֹהַי אָתָּה",
               style: textStyleSimpleText,
             ),
             TextSpan(
@@ -585,7 +662,7 @@ class mainTextWidget {
           children: <TextSpan>[
             TextSpan(
               text:
-              "בְּיָדְךָ עִתֹּתָי הַצִּילֵנִי מִיַּד אוֹיְבַי וּמֵרֹדְפָי",
+                  "בְּיָדְךָ עִתֹּתָי הַצִּילֵנִי מִיַּד אוֹיְבַי וּמֵרֹדְפָי",
               style: textStyleSimpleText,
             ),
             TextSpan(
@@ -611,8 +688,7 @@ class mainTextWidget {
         textSpan: TextSpan(
           children: <TextSpan>[
             TextSpan(
-              text:
-              "הָאִירָה פָנֶיךָ עַל עַבְדֶּךָ הוֹשִׁיעֵנִי בְחַסְדֶּךָ",
+              text: "הָאִירָה פָנֶיךָ עַל עַבְדֶּךָ הוֹשִׁיעֵנִי בְחַסְדֶּךָ",
               style: textStyleSimpleText,
             ),
             TextSpan(
@@ -639,7 +715,7 @@ class mainTextWidget {
           children: <TextSpan>[
             TextSpan(
               text:
-              "יְהוָה אַל אֵבוֹשָׁה כִּי קְרָאתִיךָ יֵבֹשׁוּ רְשָׁעִים יִדְּמוּ לִשְׁאוֹל",
+                  "יְהוָה אַל אֵבוֹשָׁה כִּי קְרָאתִיךָ יֵבֹשׁוּ רְשָׁעִים יִדְּמוּ לִשְׁאוֹל",
               style: textStyleSimpleText,
             ),
             TextSpan(
@@ -666,7 +742,7 @@ class mainTextWidget {
           children: <TextSpan>[
             TextSpan(
               text:
-              "תֵּאָלַמְנָה שִׂפְתֵי שָׁקֶר הַדֹּבְרוֹת עַל צַדִּיק עָתָק בְּגַאֲוָה וָבוּז",
+                  "תֵּאָלַמְנָה שִׂפְתֵי שָׁקֶר הַדֹּבְרוֹת עַל צַדִּיק עָתָק בְּגַאֲוָה וָבוּז",
               style: textStyleSimpleText,
             ),
             TextSpan(
@@ -693,7 +769,7 @@ class mainTextWidget {
           children: <TextSpan>[
             TextSpan(
               text:
-              "מָה רַב טוּבְךָ אֲשֶׁר צָפַנְתָּ לִּירֵאֶיךָ פָּעַלְתָּ לַחֹסִים בָּךְ נֶגֶד בְּנֵי אָדָם",
+                  "מָה רַב טוּבְךָ אֲשֶׁר צָפַנְתָּ לִּירֵאֶיךָ פָּעַלְתָּ לַחֹסִים בָּךְ נֶגֶד בְּנֵי אָדָם",
               style: textStyleSimpleText,
             ),
             TextSpan(
@@ -720,7 +796,7 @@ class mainTextWidget {
           children: <TextSpan>[
             TextSpan(
               text:
-              "תַּסְתִּירֵם בְּסֵתֶר פָּנֶיךָ מֵרֻכְסֵי אִישׁ תִּצְפְּנֵם בְּסֻכָּה מֵרִיב לְשֹׁנוֹת",
+                  "תַּסְתִּירֵם בְּסֵתֶר פָּנֶיךָ מֵרֻכְסֵי אִישׁ תִּצְפְּנֵם בְּסֻכָּה מֵרִיב לְשֹׁנוֹת",
               style: textStyleSimpleText,
             ),
             TextSpan(
@@ -746,8 +822,7 @@ class mainTextWidget {
         textSpan: TextSpan(
           children: <TextSpan>[
             TextSpan(
-              text:
-              "בָּרוּךְ יְהוָה כִּי הִפְלִיא חַסְדּוֹ לִי בְּעִיר מָצוֹר",
+              text: "בָּרוּךְ יְהוָה כִּי הִפְלִיא חַסְדּוֹ לִי בְּעִיר מָצוֹר",
               style: textStyleSimpleText,
             ),
             TextSpan(
@@ -774,7 +849,7 @@ class mainTextWidget {
           children: <TextSpan>[
             TextSpan(
               text:
-              "וַאֲנִי אָמַרְתִּי בְחָפְזִי נִגְרַזְתִּי מִנֶּגֶד עֵינֶיךָ אָכֵן שָׁמַעְתָּ קוֹל תַּחֲנוּנַי בְּשַׁוְּעִי אֵלֶיךָ",
+                  "וַאֲנִי אָמַרְתִּי בְחָפְזִי נִגְרַזְתִּי מִנֶּגֶד עֵינֶיךָ אָכֵן שָׁמַעְתָּ קוֹל תַּחֲנוּנַי בְּשַׁוְּעִי אֵלֶיךָ",
               style: textStyleSimpleText,
             ),
             TextSpan(
@@ -801,7 +876,7 @@ class mainTextWidget {
           children: <TextSpan>[
             TextSpan(
               text:
-              "אֶהֱבוּ אֶת יְהוָה כָּל חֲסִידָיו אֱמוּנִים נֹצֵר יְהוָה וּמְשַׁלֵּם עַל יֶתֶר עֹשֵׂה גַאֲוָה",
+                  "אֶהֱבוּ אֶת יְהוָה כָּל חֲסִידָיו אֱמוּנִים נֹצֵר יְהוָה וּמְשַׁלֵּם עַל יֶתֶר עֹשֵׂה גַאֲוָה",
               style: textStyleSimpleText,
             ),
             TextSpan(
@@ -827,13 +902,11 @@ class mainTextWidget {
         textSpan: TextSpan(
           children: <TextSpan>[
             TextSpan(
-              text:
-              "חִזְקוּ וְיַאֲמֵץ לְבַבְכֶם כָּל הַמְיַחֲלִים לַיהוָה ",
+              text: "חִזְקוּ וְיַאֲמֵץ לְבַבְכֶם כָּל הַמְיַחֲלִים לַיהוָה ",
               style: textStyleSimpleText,
             ),
             TextSpan(
-              text:
-              "(לַדוֹנָי – א נחה)",
+              text: "(לַדוֹנָי – א נחה)",
               style: textStyleSimpleText_pasokNotes,
             ),
             TextSpan(
@@ -843,10 +916,6 @@ class mainTextWidget {
           ],
         ),
       ),
-
-
-
-
 
       SizedBox(height: longSpace),
 
@@ -880,8 +949,7 @@ class mainTextWidget {
         textSpan: TextSpan(
           children: <TextSpan>[
             TextSpan(
-              text:
-                  "לְדָוִד רִיבָה יְהוָה אֶת יְרִיבַי לְחַם אֶת לֹחֲמָי",
+              text: "לְדָוִד רִיבָה יְהוָה אֶת יְרִיבַי לְחַם אֶת לֹחֲמָי",
               style: textStyleSimpleText,
             ),
             TextSpan(
@@ -907,8 +975,7 @@ class mainTextWidget {
         textSpan: TextSpan(
           children: <TextSpan>[
             TextSpan(
-              text:
-              "הַחֲזֵק מָגֵן וְצִנָּה וְקוּמָה בְּעֶזְרָתִי",
+              text: "הַחֲזֵק מָגֵן וְצִנָּה וְקוּמָה בְּעֶזְרָתִי",
               style: textStyleSimpleText,
             ),
             TextSpan(
@@ -935,7 +1002,7 @@ class mainTextWidget {
           children: <TextSpan>[
             TextSpan(
               text:
-              "וְהָרֵק חֲנִית וּסְגֹר לִקְרַאת רֹדְפָי אֱמֹר לְנַפְשִׁי יְשֻׁעָתֵךְ אָנִי",
+                  "וְהָרֵק חֲנִית וּסְגֹר לִקְרַאת רֹדְפָי אֱמֹר לְנַפְשִׁי יְשֻׁעָתֵךְ אָנִי",
               style: textStyleSimpleText,
             ),
             TextSpan(
@@ -962,7 +1029,7 @@ class mainTextWidget {
           children: <TextSpan>[
             TextSpan(
               text:
-              "יֵבֹשׁוּ וְיִכָּלְמוּ מְבַקְשֵׁי נַפְשִׁי יִסֹּגוּ אָחוֹר וְיַחְפְּרוּ חֹשְׁבֵי רָעָתִי",
+                  "יֵבֹשׁוּ וְיִכָּלְמוּ מְבַקְשֵׁי נַפְשִׁי יִסֹּגוּ אָחוֹר וְיַחְפְּרוּ חֹשְׁבֵי רָעָתִי",
               style: textStyleSimpleText,
             ),
             TextSpan(
@@ -988,8 +1055,7 @@ class mainTextWidget {
         textSpan: TextSpan(
           children: <TextSpan>[
             TextSpan(
-              text:
-              "יִהְיוּ כְּמֹץ לִפְנֵי רוּחַ וּמַלְאַךְ יְהוָה דּוֹחֶה",
+              text: "יִהְיוּ כְּמֹץ לִפְנֵי רוּחַ וּמַלְאַךְ יְהוָה דּוֹחֶה",
               style: textStyleSimpleText,
             ),
             TextSpan(
@@ -1016,7 +1082,7 @@ class mainTextWidget {
           children: <TextSpan>[
             TextSpan(
               text:
-              "יְהִי דַרְכָּם חֹשֶׁךְ וַחֲלַקְלַקֹּת וּמַלְאַךְ יְהוָה רֹדְפָם",
+                  "יְהִי דַרְכָּם חֹשֶׁךְ וַחֲלַקְלַקֹּת וּמַלְאַךְ יְהוָה רֹדְפָם",
               style: textStyleSimpleText,
             ),
             TextSpan(
@@ -1043,7 +1109,7 @@ class mainTextWidget {
           children: <TextSpan>[
             TextSpan(
               text:
-              "כִּי חִנָּם טָמְנוּ לִי שַׁחַת רִשְׁתָּם חִנָּם חָפְרוּ לְנַפְשִׁי",
+                  "כִּי חִנָּם טָמְנוּ לִי שַׁחַת רִשְׁתָּם חִנָּם חָפְרוּ לְנַפְשִׁי",
               style: textStyleSimpleText,
             ),
             TextSpan(
@@ -1070,7 +1136,7 @@ class mainTextWidget {
           children: <TextSpan>[
             TextSpan(
               text:
-              "תְּבוֹאֵהוּ שׁוֹאָה לֹא יֵדָע וְרִשְׁתּוֹ אֲשֶׁר טָמַן תִּלְכְּדוֹ בְּשׁוֹאָה יִפָּל בָּהּ",
+                  "תְּבוֹאֵהוּ שׁוֹאָה לֹא יֵדָע וְרִשְׁתּוֹ אֲשֶׁר טָמַן תִּלְכְּדוֹ בְּשׁוֹאָה יִפָּל בָּהּ",
               style: textStyleSimpleText,
             ),
             TextSpan(
@@ -1096,18 +1162,15 @@ class mainTextWidget {
         textSpan: TextSpan(
           children: <TextSpan>[
             TextSpan(
-              text:
-              "וְנַפְשִׁי תָּגִיל בַּיהוָה ",
+              text: "וְנַפְשִׁי תָּגִיל בַּיהוָה ",
               style: textStyleSimpleText,
             ),
             TextSpan(
-              text:
-              "(בַּדוֹנָי – א נחה)",
+              text: "(בַּדוֹנָי – א נחה)",
               style: textStyleSimpleText_pasokNotes,
             ),
             TextSpan(
-              text:
-              " תָּשִׂישׂ בִּישׁוּעָתוֹ",
+              text: " תָּשִׂישׂ בִּישׁוּעָתוֹ",
               style: textStyleSimpleText,
             ),
             TextSpan(
@@ -1134,7 +1197,7 @@ class mainTextWidget {
           children: <TextSpan>[
             TextSpan(
               text:
-              "כָּל עַצְמוֹתַי תֹּאמַרְנָה יְהוָה מִי כָמוֹךָ מַצִּיל עָנִי מֵחָזָק מִמֶּנּוּ וְעָנִי וְאֶבְיוֹן מִגֹּזְלוֹ",
+                  "כָּל עַצְמוֹתַי תֹּאמַרְנָה יְהוָה מִי כָמוֹךָ מַצִּיל עָנִי מֵחָזָק מִמֶּנּוּ וְעָנִי וְאֶבְיוֹן מִגֹּזְלוֹ",
               style: textStyleSimpleText,
             ),
             TextSpan(
@@ -1160,8 +1223,7 @@ class mainTextWidget {
         textSpan: TextSpan(
           children: <TextSpan>[
             TextSpan(
-              text:
-              "יְקוּמוּן עֵדֵי חָמָס אֲשֶׁר לֹא יָדַעְתִּי יִשְׁאָלוּנִי",
+              text: "יְקוּמוּן עֵדֵי חָמָס אֲשֶׁר לֹא יָדַעְתִּי יִשְׁאָלוּנִי",
               style: textStyleSimpleText,
             ),
             TextSpan(
@@ -1187,8 +1249,7 @@ class mainTextWidget {
         textSpan: TextSpan(
           children: <TextSpan>[
             TextSpan(
-              text:
-              "יְשַׁלְּמוּנִי רָעָה תַּחַת טוֹבָה שְׁכוֹל לְנַפְשִׁי",
+              text: "יְשַׁלְּמוּנִי רָעָה תַּחַת טוֹבָה שְׁכוֹל לְנַפְשִׁי",
               style: textStyleSimpleText,
             ),
             TextSpan(
@@ -1215,7 +1276,7 @@ class mainTextWidget {
           children: <TextSpan>[
             TextSpan(
               text:
-              "וַאֲנִי בַּחֲלוֹתָם לְבוּשִׁי שָׂק עִנֵּיתִי בַצּוֹם נַפְשִׁי וּתְפִלָּתִי עַל חֵיקִי תָשׁוּב",
+                  "וַאֲנִי בַּחֲלוֹתָם לְבוּשִׁי שָׂק עִנֵּיתִי בַצּוֹם נַפְשִׁי וּתְפִלָּתִי עַל חֵיקִי תָשׁוּב",
               style: textStyleSimpleText,
             ),
             TextSpan(
@@ -1242,7 +1303,7 @@ class mainTextWidget {
           children: <TextSpan>[
             TextSpan(
               text:
-              "כְּרֵעַ כְּאָח לִי הִתְהַלָּכְתִּי כַּאֲבֶל אֵם קֹדֵר שַׁחוֹתִי",
+                  "כְּרֵעַ כְּאָח לִי הִתְהַלָּכְתִּי כַּאֲבֶל אֵם קֹדֵר שַׁחוֹתִי",
               style: textStyleSimpleText,
             ),
             TextSpan(
@@ -1269,7 +1330,7 @@ class mainTextWidget {
           children: <TextSpan>[
             TextSpan(
               text:
-              "וּבְצַלְעִי שָׂמְחוּ וְנֶאֱסָפוּ נֶאֶסְפוּ עָלַי נֵכִים וְלֹא יָדַעְתִּי קָרְעוּ וְלֹא דָמּוּ",
+                  "וּבְצַלְעִי שָׂמְחוּ וְנֶאֱסָפוּ נֶאֶסְפוּ עָלַי נֵכִים וְלֹא יָדַעְתִּי קָרְעוּ וְלֹא דָמּוּ",
               style: textStyleSimpleText,
             ),
             TextSpan(
@@ -1295,8 +1356,7 @@ class mainTextWidget {
         textSpan: TextSpan(
           children: <TextSpan>[
             TextSpan(
-              text:
-              "בְּחַנְפֵי לַעֲגֵי מָעוֹג חָרֹק עָלַי שִׁנֵּימוֹ",
+              text: "בְּחַנְפֵי לַעֲגֵי מָעוֹג חָרֹק עָלַי שִׁנֵּימוֹ",
               style: textStyleSimpleText,
             ),
             TextSpan(
@@ -1323,7 +1383,7 @@ class mainTextWidget {
           children: <TextSpan>[
             TextSpan(
               text:
-              "אֲדֹנָי כַּמָּה תִּרְאֶה הָשִׁיבָה נַפְשִׁי מִשֹּׁאֵיהֶם מִכְּפִירִים יְחִידָתִי",
+                  "אֲדֹנָי כַּמָּה תִּרְאֶה הָשִׁיבָה נַפְשִׁי מִשֹּׁאֵיהֶם מִכְּפִירִים יְחִידָתִי",
               style: textStyleSimpleText,
             ),
             TextSpan(
@@ -1349,8 +1409,7 @@ class mainTextWidget {
         textSpan: TextSpan(
           children: <TextSpan>[
             TextSpan(
-              text:
-              "אוֹדְךָ בְּקָהָל רָב בְּעַם עָצוּם אֲהַלְלֶךּ",
+              text: "אוֹדְךָ בְּקָהָל רָב בְּעַם עָצוּם אֲהַלְלֶךּ",
               style: textStyleSimpleText,
             ),
             TextSpan(
@@ -1377,7 +1436,7 @@ class mainTextWidget {
           children: <TextSpan>[
             TextSpan(
               text:
-              "אַל יִשְׂמְחוּ לִי אֹיְבַי שֶׁקֶר שֹׂנְאַי חִנָּם יִקְרְצוּ עָיִן",
+                  "אַל יִשְׂמְחוּ לִי אֹיְבַי שֶׁקֶר שֹׂנְאַי חִנָּם יִקְרְצוּ עָיִן",
               style: textStyleSimpleText,
             ),
             TextSpan(
@@ -1404,7 +1463,7 @@ class mainTextWidget {
           children: <TextSpan>[
             TextSpan(
               text:
-              "כִּי לֹא שָׁלוֹם יְדַבֵּרוּ וְעַל רִגְעֵי אֶרֶץ דִּבְרֵי מִרְמוֹת יַחֲשֹׁבוּן",
+                  "כִּי לֹא שָׁלוֹם יְדַבֵּרוּ וְעַל רִגְעֵי אֶרֶץ דִּבְרֵי מִרְמוֹת יַחֲשֹׁבוּן",
               style: textStyleSimpleText,
             ),
             TextSpan(
@@ -1431,7 +1490,7 @@ class mainTextWidget {
           children: <TextSpan>[
             TextSpan(
               text:
-              "וַיַּרְחִיבוּ עָלַי פִּיהֶם אָמְרוּ הֶאָח הֶאָח רָאֲתָה עֵינֵנוּ",
+                  "וַיַּרְחִיבוּ עָלַי פִּיהֶם אָמְרוּ הֶאָח הֶאָח רָאֲתָה עֵינֵנוּ",
               style: textStyleSimpleText,
             ),
             TextSpan(
@@ -1458,7 +1517,7 @@ class mainTextWidget {
           children: <TextSpan>[
             TextSpan(
               text:
-              "רָאִיתָה יְהוָה אַל תֶּחֱרַשׁ אֲדֹנָי אַל תִּרְחַק מִמֶּנִּי",
+                  "רָאִיתָה יְהוָה אַל תֶּחֱרַשׁ אֲדֹנָי אַל תִּרְחַק מִמֶּנִּי",
               style: textStyleSimpleText,
             ),
             TextSpan(
@@ -1484,18 +1543,15 @@ class mainTextWidget {
         textSpan: TextSpan(
           children: <TextSpan>[
             TextSpan(
-              text:
-              "הָעִירָה וְהָקִיצָה לְמִשְׁפָּטִי אֱלֹהַי וַאדֹנָי ",
+              text: "הָעִירָה וְהָקִיצָה לְמִשְׁפָּטִי אֱלֹהַי וַאדֹנָי ",
               style: textStyleSimpleText,
             ),
             TextSpan(
-              text:
-              "(וַדוֹנָי – א נחה)",
+              text: "(וַדוֹנָי – א נחה)",
               style: textStyleSimpleText_pasokNotes,
             ),
             TextSpan(
-              text:
-              " לְרִיבִי",
+              text: " לְרִיבִי",
               style: textStyleSimpleText,
             ),
             TextSpan(
@@ -1521,8 +1577,7 @@ class mainTextWidget {
         textSpan: TextSpan(
           children: <TextSpan>[
             TextSpan(
-              text:
-              "שָׁפְטֵנִי כְצִדְקְךָ יְהוָה אֱלֹהָי וְאַל יִשְׂמְחוּ לִי",
+              text: "שָׁפְטֵנִי כְצִדְקְךָ יְהוָה אֱלֹהָי וְאַל יִשְׂמְחוּ לִי",
               style: textStyleSimpleText,
             ),
             TextSpan(
@@ -1549,7 +1604,7 @@ class mainTextWidget {
           children: <TextSpan>[
             TextSpan(
               text:
-              "אַל יֹאמְרוּ בְלִבָּם הֶאָח נַפְשֵׁנוּ אַל יֹאמְרוּ בִּלַּעֲנוּהוּ",
+                  "אַל יֹאמְרוּ בְלִבָּם הֶאָח נַפְשֵׁנוּ אַל יֹאמְרוּ בִּלַּעֲנוּהוּ",
               style: textStyleSimpleText,
             ),
             TextSpan(
@@ -1576,7 +1631,7 @@ class mainTextWidget {
           children: <TextSpan>[
             TextSpan(
               text:
-              "יֵבֹשׁוּ וְיַחְפְּרוּ יַחְדָּו שְׂמֵחֵי רָעָתִי יִלְבְּשׁוּ בֹשֶׁת וּכְלִמָּה הַמַּגְדִּילִים עָלָי",
+                  "יֵבֹשׁוּ וְיַחְפְּרוּ יַחְדָּו שְׂמֵחֵי רָעָתִי יִלְבְּשׁוּ בֹשֶׁת וּכְלִמָּה הַמַּגְדִּילִים עָלָי",
               style: textStyleSimpleText,
             ),
             TextSpan(
@@ -1603,7 +1658,7 @@ class mainTextWidget {
           children: <TextSpan>[
             TextSpan(
               text:
-              "יָרֹנּוּ וְיִשְׂמְחוּ חֲפֵצֵי צִדְקִי וְיֹאמְרוּ תָמִיד יִגְדַּל יְהוָה הֶחָפֵץ שְׁלוֹם עַבְדּוֹ",
+                  "יָרֹנּוּ וְיִשְׂמְחוּ חֲפֵצֵי צִדְקִי וְיֹאמְרוּ תָמִיד יִגְדַּל יְהוָה הֶחָפֵץ שְׁלוֹם עַבְדּוֹ",
               style: textStyleSimpleText,
             ),
             TextSpan(
@@ -1629,8 +1684,7 @@ class mainTextWidget {
         textSpan: TextSpan(
           children: <TextSpan>[
             TextSpan(
-              text:
-              "וּלְשׁוֹנִי תֶּהְגֶּה צִדְקֶךָ כָּל הַיּוֹם תְּהִלָּתֶךָ",
+              text: "וּלְשׁוֹנִי תֶּהְגֶּה צִדְקֶךָ כָּל הַיּוֹם תְּהִלָּתֶךָ",
               style: textStyleSimpleText,
             ),
             TextSpan(
@@ -1640,9 +1694,6 @@ class mainTextWidget {
           ],
         ),
       ),
-
-
-
 
       SizedBox(height: longSpace),
 
@@ -1676,8 +1727,7 @@ class mainTextWidget {
         textSpan: TextSpan(
           children: <TextSpan>[
             TextSpan(
-              text:
-              "לַמְנַצֵּחַ לְעֶבֶד יְהוָה לְדָוִד",
+              text: "לַמְנַצֵּחַ לְעֶבֶד יְהוָה לְדָוִד",
               style: textStyleSimpleText,
             ),
             TextSpan(
@@ -1704,7 +1754,7 @@ class mainTextWidget {
           children: <TextSpan>[
             TextSpan(
               text:
-              "נְאֻם פֶּשַׁע לָרָשָׁע בְּקֶרֶב לִבִּי אֵין פַּחַד אֱלֹהִים לְנֶגֶד עֵינָיו",
+                  "נְאֻם פֶּשַׁע לָרָשָׁע בְּקֶרֶב לִבִּי אֵין פַּחַד אֱלֹהִים לְנֶגֶד עֵינָיו",
               style: textStyleSimpleText,
             ),
             TextSpan(
@@ -1730,8 +1780,7 @@ class mainTextWidget {
         textSpan: TextSpan(
           children: <TextSpan>[
             TextSpan(
-              text:
-              "כִּי הֶחֱלִיק אֵלָיו בְּעֵינָיו לִמְצֹא עֲוֹנוֹ לִשְׂנֹ",
+              text: "כִּי הֶחֱלִיק אֵלָיו בְּעֵינָיו לִמְצֹא עֲוֹנוֹ לִשְׂנֹ",
               style: textStyleSimpleText,
             ),
             TextSpan(
@@ -1758,7 +1807,7 @@ class mainTextWidget {
           children: <TextSpan>[
             TextSpan(
               text:
-              "דִּבְרֵי פִיו אָוֶן וּמִרְמָה חָדַל לְהַשְׂכִּיל לְהֵיטִיב",
+                  "דִּבְרֵי פִיו אָוֶן וּמִרְמָה חָדַל לְהַשְׂכִּיל לְהֵיטִיב",
               style: textStyleSimpleText,
             ),
             TextSpan(
@@ -1785,7 +1834,7 @@ class mainTextWidget {
           children: <TextSpan>[
             TextSpan(
               text:
-              "אָוֶן יַחְשֹׁב עַל מִשְׁכָּבוֹ יִתְיַצֵּב עַל דֶּרֶךְ לֹא טוֹב רָע לֹא יִמְאָס",
+                  "אָוֶן יַחְשֹׁב עַל מִשְׁכָּבוֹ יִתְיַצֵּב עַל דֶּרֶךְ לֹא טוֹב רָע לֹא יִמְאָס",
               style: textStyleSimpleText,
             ),
             TextSpan(
@@ -1811,8 +1860,7 @@ class mainTextWidget {
         textSpan: TextSpan(
           children: <TextSpan>[
             TextSpan(
-              text:
-              "יְהוָה בְּהַשָּׁמַיִם חַסְדֶּךָ אֱמוּנָתְךָ עַד שְׁחָקִים",
+              text: "יְהוָה בְּהַשָּׁמַיִם חַסְדֶּךָ אֱמוּנָתְךָ עַד שְׁחָקִים",
               style: textStyleSimpleText,
             ),
             TextSpan(
@@ -1839,7 +1887,7 @@ class mainTextWidget {
           children: <TextSpan>[
             TextSpan(
               text:
-              "צִדְקָתְךָ כְּהַרְרֵי אֵל מִשְׁפָּטֶיךָ תְּהוֹם רַבָּה אָדָם וּבְהֵמָה תוֹשִׁיעַ יְהוָה",
+                  "צִדְקָתְךָ כְּהַרְרֵי אֵל מִשְׁפָּטֶיךָ תְּהוֹם רַבָּה אָדָם וּבְהֵמָה תוֹשִׁיעַ יְהוָה",
               style: textStyleSimpleText,
             ),
             TextSpan(
@@ -1866,7 +1914,7 @@ class mainTextWidget {
           children: <TextSpan>[
             TextSpan(
               text:
-              "מַה יָּקָר חַסְדְּךָ אֱלֹהִים וּבְנֵי אָדָם בְּצֵל כְּנָפֶיךָ יֶחֱסָיוּן",
+                  "מַה יָּקָר חַסְדְּךָ אֱלֹהִים וּבְנֵי אָדָם בְּצֵל כְּנָפֶיךָ יֶחֱסָיוּן",
               style: textStyleSimpleText,
             ),
             TextSpan(
@@ -1892,8 +1940,7 @@ class mainTextWidget {
         textSpan: TextSpan(
           children: <TextSpan>[
             TextSpan(
-              text:
-              "יִרְוְיֻן מִדֶּשֶׁן בֵּיתֶךָ וְנַחַל עֲדָנֶיךָ תַשְׁקֵם",
+              text: "יִרְוְיֻן מִדֶּשֶׁן בֵּיתֶךָ וְנַחַל עֲדָנֶיךָ תַשְׁקֵם",
               style: textStyleSimpleText,
             ),
             TextSpan(
@@ -1919,8 +1966,7 @@ class mainTextWidget {
         textSpan: TextSpan(
           children: <TextSpan>[
             TextSpan(
-              text:
-              "כִּי עִמְּךָ מְקוֹר חַיִּים בְּאוֹרְךָ נִרְאֶה אוֹר",
+              text: "כִּי עִמְּךָ מְקוֹר חַיִּים בְּאוֹרְךָ נִרְאֶה אוֹר",
               style: textStyleSimpleText,
             ),
             TextSpan(
@@ -1946,8 +1992,7 @@ class mainTextWidget {
         textSpan: TextSpan(
           children: <TextSpan>[
             TextSpan(
-              text:
-              "מְשֹׁךְ חַסְדְּךָ לְיֹדְעֶיךָ וְצִדְקָתְךָ לְיִשְׁרֵי לֵב",
+              text: "מְשֹׁךְ חַסְדְּךָ לְיֹדְעֶיךָ וְצִדְקָתְךָ לְיִשְׁרֵי לֵב",
               style: textStyleSimpleText,
             ),
             TextSpan(
@@ -1974,7 +2019,7 @@ class mainTextWidget {
           children: <TextSpan>[
             TextSpan(
               text:
-              "אַל תְּבוֹאֵנִי רֶגֶל גַּאֲוָה וְיַד רְשָׁעִים אַל תְּנִדֵנִי",
+                  "אַל תְּבוֹאֵנִי רֶגֶל גַּאֲוָה וְיַד רְשָׁעִים אַל תְּנִדֵנִי",
               style: textStyleSimpleText,
             ),
             TextSpan(
@@ -2000,8 +2045,7 @@ class mainTextWidget {
         textSpan: TextSpan(
           children: <TextSpan>[
             TextSpan(
-              text:
-              "שָׁם נָפְלוּ פֹּעֲלֵי אָוֶן דֹּחוּ וְלֹא יָכְלוּ קוּם",
+              text: "שָׁם נָפְלוּ פֹּעֲלֵי אָוֶן דֹּחוּ וְלֹא יָכְלוּ קוּם",
               style: textStyleSimpleText,
             ),
             TextSpan(
@@ -2011,9 +2055,6 @@ class mainTextWidget {
           ],
         ),
       ),
-
-
-
 
       SizedBox(height: longSpace),
 
@@ -2047,8 +2088,7 @@ class mainTextWidget {
         textSpan: TextSpan(
           children: <TextSpan>[
             TextSpan(
-              text:
-              "לַמְנַצֵּחַ עַל שׁוּשַׁן עֵדוּת מִכְתָּם לְדָוִד לְלַמֵּד",
+              text: "לַמְנַצֵּחַ עַל שׁוּשַׁן עֵדוּת מִכְתָּם לְדָוִד לְלַמֵּד",
               style: textStyleSimpleText,
             ),
             TextSpan(
@@ -2075,7 +2115,7 @@ class mainTextWidget {
           children: <TextSpan>[
             TextSpan(
               text:
-              "בְּהַצּוֹתוֹ אֶת אֲרַם נַהֲרַיִם וְאֶת אֲרַם צוֹבָה וַיָּשָׁב יוֹאָב וַיַּךְ אֶת אֱדוֹם בְּגֵיא מֶלַח שְׁנֵים עָשָׂר אָלֶף",
+                  "בְּהַצּוֹתוֹ אֶת אֲרַם נַהֲרַיִם וְאֶת אֲרַם צוֹבָה וַיָּשָׁב יוֹאָב וַיַּךְ אֶת אֱדוֹם בְּגֵיא מֶלַח שְׁנֵים עָשָׂר אָלֶף",
               style: textStyleSimpleText,
             ),
             TextSpan(
@@ -2102,7 +2142,7 @@ class mainTextWidget {
           children: <TextSpan>[
             TextSpan(
               text:
-              "אֱלֹהִים זְנַחְתָּנוּ פְרַצְתָּנוּ אָנַפְתָּ תְּשׁוֹבֵב לָנוּ",
+                  "אֱלֹהִים זְנַחְתָּנוּ פְרַצְתָּנוּ אָנַפְתָּ תְּשׁוֹבֵב לָנוּ",
               style: textStyleSimpleText,
             ),
             TextSpan(
@@ -2129,7 +2169,7 @@ class mainTextWidget {
           children: <TextSpan>[
             TextSpan(
               text:
-              "הִרְעַשְׁתָּה אֶרֶץ פְּצַמְתָּהּ רְפָה שְׁבָרֶיהָ כִי מָטָה",
+                  "הִרְעַשְׁתָּה אֶרֶץ פְּצַמְתָּהּ רְפָה שְׁבָרֶיהָ כִי מָטָה",
               style: textStyleSimpleText,
             ),
             TextSpan(
@@ -2155,8 +2195,7 @@ class mainTextWidget {
         textSpan: TextSpan(
           children: <TextSpan>[
             TextSpan(
-              text:
-              "הִרְאִיתָ עַמְּךָ קָשָׁה הִשְׁקִיתָנוּ יַיִן תַּרְעֵלָה",
+              text: "הִרְאִיתָ עַמְּךָ קָשָׁה הִשְׁקִיתָנוּ יַיִן תַּרְעֵלָה",
               style: textStyleSimpleText,
             ),
             TextSpan(
@@ -2183,7 +2222,7 @@ class mainTextWidget {
           children: <TextSpan>[
             TextSpan(
               text:
-              "נָתַתָּה לִּירֵאֶיךָ נֵּס לְהִתְנוֹסֵס מִפְּנֵי קֹשֶׁט סֶלָה",
+                  "נָתַתָּה לִּירֵאֶיךָ נֵּס לְהִתְנוֹסֵס מִפְּנֵי קֹשֶׁט סֶלָה",
               style: textStyleSimpleText,
             ),
             TextSpan(
@@ -2210,12 +2249,11 @@ class mainTextWidget {
           children: <TextSpan>[
             TextSpan(
               text:
-              "לְמַעַן יֵחָלְצוּן יְדִידֶיךָ הוֹשִׁיעָה יְמִינְךָ וַעֲנֵנִי ",
+                  "לְמַעַן יֵחָלְצוּן יְדִידֶיךָ הוֹשִׁיעָה יְמִינְךָ וַעֲנֵנִי ",
               style: textStyleSimpleText,
             ),
             TextSpan(
-              text:
-              "(כתיב: ועננו)",
+              text: "(כתיב: ועננו)",
               style: textStyleSimpleText_pasokNotes,
             ),
             TextSpan(
@@ -2242,7 +2280,7 @@ class mainTextWidget {
           children: <TextSpan>[
             TextSpan(
               text:
-              "אֱלֹהִים דִּבֶּר בְּקָדְשׁוֹ אֶעְלֹזָה אֲחַלְּקָה שְׁכֶם וְעֵמֶק סֻכּוֹת אֲמַדֵּד",
+                  "אֱלֹהִים דִּבֶּר בְּקָדְשׁוֹ אֶעְלֹזָה אֲחַלְּקָה שְׁכֶם וְעֵמֶק סֻכּוֹת אֲמַדֵּד",
               style: textStyleSimpleText,
             ),
             TextSpan(
@@ -2269,7 +2307,7 @@ class mainTextWidget {
           children: <TextSpan>[
             TextSpan(
               text:
-              "לִי גִלְעָד וְלִי מְנַשֶּׁה וְאֶפְרַיִם מָעוֹז רֹאשִׁי יְהוּדָה מְחֹקְקִי",
+                  "לִי גִלְעָד וְלִי מְנַשֶּׁה וְאֶפְרַיִם מָעוֹז רֹאשִׁי יְהוּדָה מְחֹקְקִי",
               style: textStyleSimpleText,
             ),
             TextSpan(
@@ -2296,7 +2334,7 @@ class mainTextWidget {
           children: <TextSpan>[
             TextSpan(
               text:
-              "מוֹאָב סִיר רַחְצִי עַל אֱדוֹם אַשְׁלִיךְ נַעֲלִי עָלַי פְּלֶשֶׁת הִתְרוֹעָעִי",
+                  "מוֹאָב סִיר רַחְצִי עַל אֱדוֹם אַשְׁלִיךְ נַעֲלִי עָלַי פְּלֶשֶׁת הִתְרוֹעָעִי",
               style: textStyleSimpleText,
             ),
             TextSpan(
@@ -2322,8 +2360,7 @@ class mainTextWidget {
         textSpan: TextSpan(
           children: <TextSpan>[
             TextSpan(
-              text:
-              "מִי יֹבִלֵנִי עִיר מָצוֹר מִי נָחַנִי עַד אֱדוֹם",
+              text: "מִי יֹבִלֵנִי עִיר מָצוֹר מִי נָחַנִי עַד אֱדוֹם",
               style: textStyleSimpleText,
             ),
             TextSpan(
@@ -2350,7 +2387,7 @@ class mainTextWidget {
           children: <TextSpan>[
             TextSpan(
               text:
-              "הֲלֹא אַתָּה אֱלֹהִים זְנַחְתָּנוּ וְלֹא תֵצֵא אֱלֹהִים בְּצִבְאוֹתֵינוּ",
+                  "הֲלֹא אַתָּה אֱלֹהִים זְנַחְתָּנוּ וְלֹא תֵצֵא אֱלֹהִים בְּצִבְאוֹתֵינוּ",
               style: textStyleSimpleText,
             ),
             TextSpan(
@@ -2376,8 +2413,7 @@ class mainTextWidget {
         textSpan: TextSpan(
           children: <TextSpan>[
             TextSpan(
-              text:
-              "הָבָה לָּנוּ עֶזְרָת מִצָּר וְשָׁוְא תְּשׁוּעַת אָדָם",
+              text: "הָבָה לָּנוּ עֶזְרָת מִצָּר וְשָׁוְא תְּשׁוּעַת אָדָם",
               style: textStyleSimpleText,
             ),
             TextSpan(
@@ -2403,18 +2439,15 @@ class mainTextWidget {
         textSpan: TextSpan(
           children: <TextSpan>[
             TextSpan(
-              text:
-              "בֵּאלֹהִים ",
+              text: "בֵּאלֹהִים ",
               style: textStyleSimpleText,
             ),
             TextSpan(
-              text:
-              "(בֵּלֹהִים – א נחה) ",
+              text: "(בֵּלֹהִים – א נחה) ",
               style: textStyleSimpleText_pasokNotes,
             ),
             TextSpan(
-              text:
-              "נַעֲשֶׂה חָיִל וְהוּא יָבוּס צָרֵינוּ",
+              text: "נַעֲשֶׂה חָיִל וְהוּא יָבוּס צָרֵינוּ",
               style: textStyleSimpleText,
             ),
             TextSpan(
@@ -2424,9 +2457,6 @@ class mainTextWidget {
           ],
         ),
       ),
-
-
-
 
       SizedBox(height: longSpace),
 
@@ -2460,8 +2490,7 @@ class mainTextWidget {
         textSpan: TextSpan(
           children: <TextSpan>[
             TextSpan(
-              text:
-              "לַמְנַצֵּחַ לְדָוִד מִזְמוֹר שִׁיר",
+              text: "לַמְנַצֵּחַ לְדָוִד מִזְמוֹר שִׁיר",
               style: textStyleSimpleText,
             ),
             TextSpan(
@@ -2488,7 +2517,7 @@ class mainTextWidget {
           children: <TextSpan>[
             TextSpan(
               text:
-              "יָקוּם אֱלֹהִים יָפוּצוּ אוֹיְבָיו וְיָנוּסוּ מְשַׂנְאָיו מִפָּנָיו",
+                  "יָקוּם אֱלֹהִים יָפוּצוּ אוֹיְבָיו וְיָנוּסוּ מְשַׂנְאָיו מִפָּנָיו",
               style: textStyleSimpleText,
             ),
             TextSpan(
@@ -2515,7 +2544,7 @@ class mainTextWidget {
           children: <TextSpan>[
             TextSpan(
               text:
-              "כְּהִנְדֹּף עָשָׁן תִּנְדֹּף כְּהִמֵּס דּוֹנַג מִפְּנֵי אֵשׁ יֹאבְדוּ רְשָׁעִים מִפְּנֵי אֱלֹהִים",
+                  "כְּהִנְדֹּף עָשָׁן תִּנְדֹּף כְּהִמֵּס דּוֹנַג מִפְּנֵי אֵשׁ יֹאבְדוּ רְשָׁעִים מִפְּנֵי אֱלֹהִים",
               style: textStyleSimpleText,
             ),
             TextSpan(
@@ -2542,7 +2571,7 @@ class mainTextWidget {
           children: <TextSpan>[
             TextSpan(
               text:
-              "וְצַדִּיקִים יִשְׂמְחוּ יַעַלְצוּ לִפְנֵי אֱלֹהִים וְיָשִׂישׂוּ בְשִׂמְחָה",
+                  "וְצַדִּיקִים יִשְׂמְחוּ יַעַלְצוּ לִפְנֵי אֱלֹהִים וְיָשִׂישׂוּ בְשִׂמְחָה",
               style: textStyleSimpleText,
             ),
             TextSpan(
@@ -2568,18 +2597,16 @@ class mainTextWidget {
         textSpan: TextSpan(
           children: <TextSpan>[
             TextSpan(
-              text:
-              "שִׁירוּ לֵאלֹהִים ",
+              text: "שִׁירוּ לֵאלֹהִים ",
               style: textStyleSimpleText,
             ),
             TextSpan(
-              text:
-              "(לֵלֹהִים – א נחה)",
+              text: "(לֵלֹהִים – א נחה)",
               style: textStyleSimpleText_pasokNotes,
             ),
             TextSpan(
               text:
-              " זַמְּרוּ שְׁמוֹ סֹלּוּ לָרֹכֵב בָּעֲרָבוֹת בְּיָהּ שְׁמוֹ וְעִלְזוּ לְפָנָיו",
+                  " זַמְּרוּ שְׁמוֹ סֹלּוּ לָרֹכֵב בָּעֲרָבוֹת בְּיָהּ שְׁמוֹ וְעִלְזוּ לְפָנָיו",
               style: textStyleSimpleText,
             ),
             TextSpan(
@@ -2606,7 +2633,7 @@ class mainTextWidget {
           children: <TextSpan>[
             TextSpan(
               text:
-              "אֲבִי יְתוֹמִים וְדַיַּן אַלְמָנוֹת אֱלֹהִים בִּמְעוֹן קָדְשׁוֹ",
+                  "אֲבִי יְתוֹמִים וְדַיַּן אַלְמָנוֹת אֱלֹהִים בִּמְעוֹן קָדְשׁוֹ",
               style: textStyleSimpleText,
             ),
             TextSpan(
@@ -2633,7 +2660,7 @@ class mainTextWidget {
           children: <TextSpan>[
             TextSpan(
               text:
-              "אֱלֹהִים מוֹשִׁיב יְחִידִים בַּיְתָה מוֹצִיא אֲסִירִים בַּכּוֹשָׁרוֹת אַךְ סוֹרְרִים שָׁכְנוּ צְחִיחָה",
+                  "אֱלֹהִים מוֹשִׁיב יְחִידִים בַּיְתָה מוֹצִיא אֲסִירִים בַּכּוֹשָׁרוֹת אַךְ סוֹרְרִים שָׁכְנוּ צְחִיחָה",
               style: textStyleSimpleText,
             ),
             TextSpan(
@@ -2660,7 +2687,7 @@ class mainTextWidget {
           children: <TextSpan>[
             TextSpan(
               text:
-              "אֱלֹהִים בְּצֵאתְךָ לִפְנֵי עַמֶּךָ בְּצַעְדְּךָ בִישִׁימוֹן סֶלָה",
+                  "אֱלֹהִים בְּצֵאתְךָ לִפְנֵי עַמֶּךָ בְּצַעְדְּךָ בִישִׁימוֹן סֶלָה",
               style: textStyleSimpleText,
             ),
             TextSpan(
@@ -2687,7 +2714,7 @@ class mainTextWidget {
           children: <TextSpan>[
             TextSpan(
               text:
-              "אֶרֶץ רָעָשָׁה אַף שָׁמַיִם נָטְפוּ מִפְּנֵי אֱלֹהִים זֶה סִינַי מִפְּנֵי אֱלֹהִים אֱלֹהֵי יִשְׂרָאֵל",
+                  "אֶרֶץ רָעָשָׁה אַף שָׁמַיִם נָטְפוּ מִפְּנֵי אֱלֹהִים זֶה סִינַי מִפְּנֵי אֱלֹהִים אֱלֹהֵי יִשְׂרָאֵל",
               style: textStyleSimpleText,
             ),
             TextSpan(
@@ -2714,7 +2741,7 @@ class mainTextWidget {
           children: <TextSpan>[
             TextSpan(
               text:
-              "גֶּשֶׁם נְדָבוֹת תָּנִיף אֱלֹהִים נַחֲלָתְךָ וְנִלְאָה אַתָּה כוֹנַנְתָּהּ",
+                  "גֶּשֶׁם נְדָבוֹת תָּנִיף אֱלֹהִים נַחֲלָתְךָ וְנִלְאָה אַתָּה כוֹנַנְתָּהּ",
               style: textStyleSimpleText,
             ),
             TextSpan(
@@ -2741,7 +2768,7 @@ class mainTextWidget {
           children: <TextSpan>[
             TextSpan(
               text:
-              "חַיָּתְךָ יָשְׁבוּ בָהּ תָּכִין בְּטוֹבָתְךָ לֶעָנִי אֱלֹהִים",
+                  "חַיָּתְךָ יָשְׁבוּ בָהּ תָּכִין בְּטוֹבָתְךָ לֶעָנִי אֱלֹהִים",
               style: textStyleSimpleText,
             ),
             TextSpan(
@@ -2767,8 +2794,7 @@ class mainTextWidget {
         textSpan: TextSpan(
           children: <TextSpan>[
             TextSpan(
-              text:
-              " אֲדֹנָי יִתֶּן אֹמֶר הַמְבַשְּׂרוֹת צָבָא רָב",
+              text: " אֲדֹנָי יִתֶּן אֹמֶר הַמְבַשְּׂרוֹת צָבָא רָב",
               style: textStyleSimpleText,
             ),
             TextSpan(
@@ -2795,7 +2821,7 @@ class mainTextWidget {
           children: <TextSpan>[
             TextSpan(
               text:
-              "מַלְכֵי צְבָאוֹת יִדֹּדוּן יִדֹּדוּן וּנְוַת בַּיִת תְּחַלֵּק שָׁלָל",
+                  "מַלְכֵי צְבָאוֹת יִדֹּדוּן יִדֹּדוּן וּנְוַת בַּיִת תְּחַלֵּק שָׁלָל",
               style: textStyleSimpleText,
             ),
             TextSpan(
@@ -2822,7 +2848,7 @@ class mainTextWidget {
           children: <TextSpan>[
             TextSpan(
               text:
-              "אִם תִּשְׁכְּבוּן בֵּין שְׁפַתָּיִם כַּנְפֵי יוֹנָה נֶחְפָּה בַכֶּסֶף וְאֶבְרוֹתֶיהָ בִּירַקְרַק חָרוּץ",
+                  "אִם תִּשְׁכְּבוּן בֵּין שְׁפַתָּיִם כַּנְפֵי יוֹנָה נֶחְפָּה בַכֶּסֶף וְאֶבְרוֹתֶיהָ בִּירַקְרַק חָרוּץ",
               style: textStyleSimpleText,
             ),
             TextSpan(
@@ -2848,8 +2874,7 @@ class mainTextWidget {
         textSpan: TextSpan(
           children: <TextSpan>[
             TextSpan(
-              text:
-              "בְּפָרֵשׂ שַׁדַּי מְלָכִים בָּהּ תַּשְׁלֵג בְּצַלְמוֹן",
+              text: "בְּפָרֵשׂ שַׁדַּי מְלָכִים בָּהּ תַּשְׁלֵג בְּצַלְמוֹן",
               style: textStyleSimpleText,
             ),
             TextSpan(
@@ -2875,8 +2900,7 @@ class mainTextWidget {
         textSpan: TextSpan(
           children: <TextSpan>[
             TextSpan(
-              text:
-              "הַר אֱלֹהִים הַר בָּשָׁן הַר גַּבְנֻנִּים הַר בָּשָׁן",
+              text: "הַר אֱלֹהִים הַר בָּשָׁן הַר גַּבְנֻנִּים הַר בָּשָׁן",
               style: textStyleSimpleText,
             ),
             TextSpan(
@@ -2903,7 +2927,7 @@ class mainTextWidget {
           children: <TextSpan>[
             TextSpan(
               text:
-              "לָמָּה תְּרַצְּדוּן הָרִים גַּבְנֻנִּים הָהָר חָמַד אֱלֹהִים לְשִׁבְתּוֹ אַף יְהוָה יִשְׁכֹּן לָנֶצַח",
+                  "לָמָּה תְּרַצְּדוּן הָרִים גַּבְנֻנִּים הָהָר חָמַד אֱלֹהִים לְשִׁבְתּוֹ אַף יְהוָה יִשְׁכֹּן לָנֶצַח",
               style: textStyleSimpleText,
             ),
             TextSpan(
@@ -2930,7 +2954,7 @@ class mainTextWidget {
           children: <TextSpan>[
             TextSpan(
               text:
-              "רֶכֶב אֱלֹהִים רִבֹּתַיִם אַלְפֵי שִׁנְאָן אֲדֹנָי בָם סִינַי בַּקֹּדֶשׁ",
+                  "רֶכֶב אֱלֹהִים רִבֹּתַיִם אַלְפֵי שִׁנְאָן אֲדֹנָי בָם סִינַי בַּקֹּדֶשׁ",
               style: textStyleSimpleText,
             ),
             TextSpan(
@@ -2957,7 +2981,7 @@ class mainTextWidget {
           children: <TextSpan>[
             TextSpan(
               text:
-              "עָלִיתָ לַמָּרוֹם שָׁבִיתָ שֶּׁבִי לָקַחְתָּ מַתָּנוֹת בָּאָדָם וְאַף סוֹרְרִים לִשְׁכֹּן יָהּ אֱלֹהִים",
+                  "עָלִיתָ לַמָּרוֹם שָׁבִיתָ שֶּׁבִי לָקַחְתָּ מַתָּנוֹת בָּאָדָם וְאַף סוֹרְרִים לִשְׁכֹּן יָהּ אֱלֹהִים",
               style: textStyleSimpleText,
             ),
             TextSpan(
@@ -2984,7 +3008,7 @@ class mainTextWidget {
           children: <TextSpan>[
             TextSpan(
               text:
-              "בָּרוּךְ אֲדֹנָי יוֹם יוֹם יַעֲמָס לָנוּ הָאֵל יְשׁוּעָתֵנוּ סֶלָה",
+                  "בָּרוּךְ אֲדֹנָי יוֹם יוֹם יַעֲמָס לָנוּ הָאֵל יְשׁוּעָתֵנוּ סֶלָה",
               style: textStyleSimpleText,
             ),
             TextSpan(
@@ -3010,18 +3034,15 @@ class mainTextWidget {
         textSpan: TextSpan(
           children: <TextSpan>[
             TextSpan(
-              text:
-              "הָאֵל לָנוּ אֵל לְמוֹשָׁעוֹת וְלֵאֱלֹהִים ",
+              text: "הָאֵל לָנוּ אֵל לְמוֹשָׁעוֹת וְלֵאֱלֹהִים ",
               style: textStyleSimpleText,
             ),
             TextSpan(
-              text:
-              "(כתיב: וְלֵיהוִה)",
+              text: "(כתיב: וְלֵיהוִה)",
               style: textStyleSimpleText_pasokNotes,
             ),
             TextSpan(
-              text:
-              " אֲדֹנָי לַמָּוֶת תֹּצָאוֹת",
+              text: " אֲדֹנָי לַמָּוֶת תֹּצָאוֹת",
               style: textStyleSimpleText,
             ),
             TextSpan(
@@ -3048,7 +3069,7 @@ class mainTextWidget {
           children: <TextSpan>[
             TextSpan(
               text:
-              "אַךְ אֱלֹהִים יִמְחַץ רֹאשׁ אֹיְבָיו קָדְקֹד שֵׂעָר מִתְהַלֵּךְ בַּאֲשָׁמָיו",
+                  "אַךְ אֱלֹהִים יִמְחַץ רֹאשׁ אֹיְבָיו קָדְקֹד שֵׂעָר מִתְהַלֵּךְ בַּאֲשָׁמָיו",
               style: textStyleSimpleText,
             ),
             TextSpan(
@@ -3074,8 +3095,7 @@ class mainTextWidget {
         textSpan: TextSpan(
           children: <TextSpan>[
             TextSpan(
-              text:
-              "אָמַר אֲדֹנָי מִבָּשָׁן אָשִׁיב אָשִׁיב מִמְּצֻלוֹת יָם",
+              text: "אָמַר אֲדֹנָי מִבָּשָׁן אָשִׁיב אָשִׁיב מִמְּצֻלוֹת יָם",
               style: textStyleSimpleText,
             ),
             TextSpan(
@@ -3102,7 +3122,7 @@ class mainTextWidget {
           children: <TextSpan>[
             TextSpan(
               text:
-              "לְמַעַן תִּמְחַץ רַגְלְךָ בְּדָם לְשׁוֹן כְּלָבֶיךָ מֵאֹיְבִים מִנֵּהוּ",
+                  "לְמַעַן תִּמְחַץ רַגְלְךָ בְּדָם לְשׁוֹן כְּלָבֶיךָ מֵאֹיְבִים מִנֵּהוּ",
               style: textStyleSimpleText,
             ),
             TextSpan(
@@ -3129,7 +3149,7 @@ class mainTextWidget {
           children: <TextSpan>[
             TextSpan(
               text:
-              "רָאוּ הֲלִיכוֹתֶיךָ אֱלֹהִים הֲלִיכוֹת אֵלִי מַלְכִּי בַקֹּדֶשׁ",
+                  "רָאוּ הֲלִיכוֹתֶיךָ אֱלֹהִים הֲלִיכוֹת אֵלִי מַלְכִּי בַקֹּדֶשׁ",
               style: textStyleSimpleText,
             ),
             TextSpan(
@@ -3156,7 +3176,7 @@ class mainTextWidget {
           children: <TextSpan>[
             TextSpan(
               text:
-              "קִדְּמוּ שָׁרִים אַחַר נֹגְנִים בְּתוֹךְ עֲלָמוֹת תּוֹפֵפוֹת",
+                  "קִדְּמוּ שָׁרִים אַחַר נֹגְנִים בְּתוֹךְ עֲלָמוֹת תּוֹפֵפוֹת",
               style: textStyleSimpleText,
             ),
             TextSpan(
@@ -3183,7 +3203,7 @@ class mainTextWidget {
           children: <TextSpan>[
             TextSpan(
               text:
-              "בְּמַקְהֵלוֹת בָּרְכוּ אֱלֹהִים אֲדֹנָי מִמְּקוֹר יִשְׂרָאֵל",
+                  "בְּמַקְהֵלוֹת בָּרְכוּ אֱלֹהִים אֲדֹנָי מִמְּקוֹר יִשְׂרָאֵל",
               style: textStyleSimpleText,
             ),
             TextSpan(
@@ -3210,7 +3230,7 @@ class mainTextWidget {
           children: <TextSpan>[
             TextSpan(
               text:
-              "שָׁם בִּנְיָמִן צָעִיר רֹדֵם שָׂרֵי יְהוּדָה רִגְמָתָם שָׂרֵי זְבֻלוּן שָׂרֵי נַפְתָּלִי",
+                  "שָׁם בִּנְיָמִן צָעִיר רֹדֵם שָׂרֵי יְהוּדָה רִגְמָתָם שָׂרֵי זְבֻלוּן שָׂרֵי נַפְתָּלִי",
               style: textStyleSimpleText,
             ),
             TextSpan(
@@ -3237,7 +3257,7 @@ class mainTextWidget {
           children: <TextSpan>[
             TextSpan(
               text:
-              "צִוָּה אֱלֹהֶיךָ עֻזֶּךָ עוּזָּה אֱלֹהִים זוּ פָּעַלְתָּ לָּנוּ",
+                  "צִוָּה אֱלֹהֶיךָ עֻזֶּךָ עוּזָּה אֱלֹהִים זוּ פָּעַלְתָּ לָּנוּ",
               style: textStyleSimpleText,
             ),
             TextSpan(
@@ -3263,8 +3283,7 @@ class mainTextWidget {
         textSpan: TextSpan(
           children: <TextSpan>[
             TextSpan(
-              text:
-              "מֵהֵיכָלֶךָ עַל יְרוּשָׁלִָם לְךָ יוֹבִילוּ מְלָכִים שָׁי",
+              text: "מֵהֵיכָלֶךָ עַל יְרוּשָׁלִָם לְךָ יוֹבִילוּ מְלָכִים שָׁי",
               style: textStyleSimpleText,
             ),
             TextSpan(
@@ -3291,7 +3310,7 @@ class mainTextWidget {
           children: <TextSpan>[
             TextSpan(
               text:
-              "גְּעַר חַיַּת קָנֶה עֲדַת אַבִּירִים בְּעֶגְלֵי עַמִּים מִתְרַפֵּס בְּרַצֵּי כָסֶף בִּזַּר עַמִּים קְרָבוֹת יֶחְפָּצוּ",
+                  "גְּעַר חַיַּת קָנֶה עֲדַת אַבִּירִים בְּעֶגְלֵי עַמִּים מִתְרַפֵּס בְּרַצֵּי כָסֶף בִּזַּר עַמִּים קְרָבוֹת יֶחְפָּצוּ",
               style: textStyleSimpleText,
             ),
             TextSpan(
@@ -3318,12 +3337,11 @@ class mainTextWidget {
           children: <TextSpan>[
             TextSpan(
               text:
-              "יֶאֱתָיוּ חַשְׁמַנִּים מִנִּי מִצְרָיִם כּוּשׁ תָּרִיץ יָדָיו לֵאלֹהִים ",
+                  "יֶאֱתָיוּ חַשְׁמַנִּים מִנִּי מִצְרָיִם כּוּשׁ תָּרִיץ יָדָיו לֵאלֹהִים ",
               style: textStyleSimpleText,
             ),
             TextSpan(
-              text:
-              "(לֵלֹהִים – א נחה)",
+              text: "(לֵלֹהִים – א נחה)",
               style: textStyleSimpleText_pasokNotes,
             ),
             TextSpan(
@@ -3350,7 +3368,7 @@ class mainTextWidget {
           children: <TextSpan>[
             TextSpan(
               text:
-              "מַמְלְכוֹת הָאָרֶץ שִׁירוּ לֵאלֹהִים זַמְּרוּ אֲדֹנָי סֶלָה",
+                  "מַמְלְכוֹת הָאָרֶץ שִׁירוּ לֵאלֹהִים זַמְּרוּ אֲדֹנָי סֶלָה",
               style: textStyleSimpleText,
             ),
             TextSpan(
@@ -3377,7 +3395,7 @@ class mainTextWidget {
           children: <TextSpan>[
             TextSpan(
               text:
-              "לָרֹכֵב בִּשְׁמֵי שְׁמֵי קֶדֶם הֵן יִתֵּן בְּקוֹלוֹ קוֹל עֹז",
+                  "לָרֹכֵב בִּשְׁמֵי שְׁמֵי קֶדֶם הֵן יִתֵּן בְּקוֹלוֹ קוֹל עֹז",
               style: textStyleSimpleText,
             ),
             TextSpan(
@@ -3403,18 +3421,15 @@ class mainTextWidget {
         textSpan: TextSpan(
           children: <TextSpan>[
             TextSpan(
-              text:
-              "תְּנוּ עֹז לֵאלֹהִים ",
+              text: "תְּנוּ עֹז לֵאלֹהִים ",
               style: textStyleSimpleText,
             ),
             TextSpan(
-              text:
-              "(לֵלֹהִים – א נחה)",
+              text: "(לֵלֹהִים – א נחה)",
               style: textStyleSimpleText_pasokNotes,
             ),
             TextSpan(
-              text:
-              " עַל יִשְׂרָאֵל גַּאֲוָתוֹ וְעֻזּוֹ בַּשְּׁחָקִים",
+              text: " עַל יִשְׂרָאֵל גַּאֲוָתוֹ וְעֻזּוֹ בַּשְּׁחָקִים",
               style: textStyleSimpleText,
             ),
             TextSpan(
@@ -3441,7 +3456,7 @@ class mainTextWidget {
           children: <TextSpan>[
             TextSpan(
               text:
-              "נוֹרָא אֱלֹהִים מִמִּקְדָּשֶׁיךָ אֵל יִשְׂרָאֵל הוּא נֹתֵן עֹז וְתַעֲצֻמוֹת לָעָם בָּרוּךְ אֱלֹהִים",
+                  "נוֹרָא אֱלֹהִים מִמִּקְדָּשֶׁיךָ אֵל יִשְׂרָאֵל הוּא נֹתֵן עֹז וְתַעֲצֻמוֹת לָעָם בָּרוּךְ אֱלֹהִים",
               style: textStyleSimpleText,
             ),
             TextSpan(
@@ -3451,9 +3466,6 @@ class mainTextWidget {
           ],
         ),
       ),
-
-
-
 
       SizedBox(height: longSpace),
 
@@ -3487,8 +3499,7 @@ class mainTextWidget {
         textSpan: TextSpan(
           children: <TextSpan>[
             TextSpan(
-              text:
-              "לַמְנַצֵּחַ אֶל שֹׁשַׁנִּים עֵדוּת לְאָסָף מִזְמוֹר",
+              text: "לַמְנַצֵּחַ אֶל שֹׁשַׁנִּים עֵדוּת לְאָסָף מִזְמוֹר",
               style: textStyleSimpleText,
             ),
             TextSpan(
@@ -3515,7 +3526,7 @@ class mainTextWidget {
           children: <TextSpan>[
             TextSpan(
               text:
-              "רֹעֵה יִשְׂרָאֵל הַאֲזִינָה נֹהֵג כַּצֹּאן יוֹסֵף יֹשֵׁב הַכְּרוּבִים הוֹפִיעָה",
+                  "רֹעֵה יִשְׂרָאֵל הַאֲזִינָה נֹהֵג כַּצֹּאן יוֹסֵף יֹשֵׁב הַכְּרוּבִים הוֹפִיעָה",
               style: textStyleSimpleText,
             ),
             TextSpan(
@@ -3542,7 +3553,7 @@ class mainTextWidget {
           children: <TextSpan>[
             TextSpan(
               text:
-              "לִפְנֵי אֶפְרַיִם וּבִנְיָמִן וּמְנַשֶּׁה עוֹרְרָה אֶת גְּבוּרָתֶךָ וּלְכָה לִישֻׁעָתָה לָּנוּ",
+                  "לִפְנֵי אֶפְרַיִם וּבִנְיָמִן וּמְנַשֶּׁה עוֹרְרָה אֶת גְּבוּרָתֶךָ וּלְכָה לִישֻׁעָתָה לָּנוּ",
               style: textStyleSimpleText,
             ),
             TextSpan(
@@ -3568,8 +3579,7 @@ class mainTextWidget {
         textSpan: TextSpan(
           children: <TextSpan>[
             TextSpan(
-              text:
-              "אֱלֹהִים הֲשִׁיבֵנוּ וְהָאֵר פָּנֶיךָ וְנִוָּשֵׁעָה",
+              text: "אֱלֹהִים הֲשִׁיבֵנוּ וְהָאֵר פָּנֶיךָ וְנִוָּשֵׁעָה",
               style: textStyleSimpleText,
             ),
             TextSpan(
@@ -3596,7 +3606,7 @@ class mainTextWidget {
           children: <TextSpan>[
             TextSpan(
               text:
-              "יְהוָה אֱלֹהִים צְבָאוֹת עַד מָתַי עָשַׁנְתָּ בִּתְפִלַּת עַמֶּךָ",
+                  "יְהוָה אֱלֹהִים צְבָאוֹת עַד מָתַי עָשַׁנְתָּ בִּתְפִלַּת עַמֶּךָ",
               style: textStyleSimpleText,
             ),
             TextSpan(
@@ -3623,7 +3633,7 @@ class mainTextWidget {
           children: <TextSpan>[
             TextSpan(
               text:
-              "הֶאֱכַלְתָּם לֶחֶם דִּמְעָה וַתַּשְׁקֵמוֹ בִּדְמָעוֹת שָׁלִישׁ",
+                  "הֶאֱכַלְתָּם לֶחֶם דִּמְעָה וַתַּשְׁקֵמוֹ בִּדְמָעוֹת שָׁלִישׁ",
               style: textStyleSimpleText,
             ),
             TextSpan(
@@ -3650,7 +3660,7 @@ class mainTextWidget {
           children: <TextSpan>[
             TextSpan(
               text:
-              "תְּשִׂימֵנוּ מָדוֹן לִשְׁכֵנֵינוּ וְאֹיְבֵינוּ יִלְעֲגוּ לָמוֹ",
+                  "תְּשִׂימֵנוּ מָדוֹן לִשְׁכֵנֵינוּ וְאֹיְבֵינוּ יִלְעֲגוּ לָמוֹ",
               style: textStyleSimpleText,
             ),
             TextSpan(
@@ -3677,7 +3687,7 @@ class mainTextWidget {
           children: <TextSpan>[
             TextSpan(
               text:
-              "אֱלֹהִים צְבָאוֹת הֲשִׁיבֵנוּ וְהָאֵר פָּנֶיךָ וְנִוָּשֵׁעָה",
+                  "אֱלֹהִים צְבָאוֹת הֲשִׁיבֵנוּ וְהָאֵר פָּנֶיךָ וְנִוָּשֵׁעָה",
               style: textStyleSimpleText,
             ),
             TextSpan(
@@ -3704,7 +3714,7 @@ class mainTextWidget {
           children: <TextSpan>[
             TextSpan(
               text:
-              "גֶּפֶן מִמִּצְרַיִם תַּסִּיעַ תְּגָרֵשׁ גּוֹיִם וַתִּטָּעֶה",
+                  "גֶּפֶן מִמִּצְרַיִם תַּסִּיעַ תְּגָרֵשׁ גּוֹיִם וַתִּטָּעֶה",
               style: textStyleSimpleText,
             ),
             TextSpan(
@@ -3730,18 +3740,15 @@ class mainTextWidget {
         textSpan: TextSpan(
           children: <TextSpan>[
             TextSpan(
-              text:
-              "פִּנִּיתָ לְפָנֶיהָ וַתַּשְׁרֵשׁ שָׁרָשֶׁיהָ ",
+              text: "פִּנִּיתָ לְפָנֶיהָ וַתַּשְׁרֵשׁ שָׁרָשֶׁיהָ ",
               style: textStyleSimpleText,
             ),
             TextSpan(
-              text:
-              "(שָׁרָשֶׁיהָ – בקמץ רגיל)",
+              text: "(שָׁרָשֶׁיהָ – בקמץ רגיל)",
               style: textStyleSimpleText_pasokNotes,
             ),
             TextSpan(
-              text:
-              " וַתְּמַלֵּא אָרֶץ",
+              text: " וַתְּמַלֵּא אָרֶץ",
               style: textStyleSimpleText,
             ),
             TextSpan(
@@ -3767,18 +3774,15 @@ class mainTextWidget {
         textSpan: TextSpan(
           children: <TextSpan>[
             TextSpan(
-              text:
-              "כָּסּוּ ",
+              text: "כָּסּוּ ",
               style: textStyleSimpleText,
             ),
             TextSpan(
-              text:
-              "(כמו: כּוֹסּוּ)",
+              text: "(כמו: כּוֹסּוּ)",
               style: textStyleSimpleText_pasokNotes,
             ),
             TextSpan(
-              text:
-              " הָרִים צִלָּהּ וַעֲנָפֶיהָ אַרְזֵי אֵל",
+              text: " הָרִים צִלָּהּ וַעֲנָפֶיהָ אַרְזֵי אֵל",
               style: textStyleSimpleText,
             ),
             TextSpan(
@@ -3804,8 +3808,7 @@ class mainTextWidget {
         textSpan: TextSpan(
           children: <TextSpan>[
             TextSpan(
-              text:
-              "תְּשַׁלַּח קְצִירֶהָ עַד יָם וְאֶל נָהָר יוֹנְקוֹתֶיה",
+              text: "תְּשַׁלַּח קְצִירֶהָ עַד יָם וְאֶל נָהָר יוֹנְקוֹתֶיה",
               style: textStyleSimpleText,
             ),
             TextSpan(
@@ -3831,8 +3834,7 @@ class mainTextWidget {
         textSpan: TextSpan(
           children: <TextSpan>[
             TextSpan(
-              text:
-              "לָמָּה פָּרַצְתָּ גְדֵרֶיהָ וְאָרוּהָ כָּל עֹבְרֵי דָרֶךְ",
+              text: "לָמָּה פָּרַצְתָּ גְדֵרֶיהָ וְאָרוּהָ כָּל עֹבְרֵי דָרֶךְ",
               style: textStyleSimpleText,
             ),
             TextSpan(
@@ -3858,8 +3860,7 @@ class mainTextWidget {
         textSpan: TextSpan(
           children: <TextSpan>[
             TextSpan(
-              text:
-              "יְכַרְסְמֶנָּה חֲזִיר מִיָּעַר וְזִיז שָׂדַי יִרְעֶנָּה",
+              text: "יְכַרְסְמֶנָּה חֲזִיר מִיָּעַר וְזִיז שָׂדַי יִרְעֶנָּה",
               style: textStyleSimpleText,
             ),
             TextSpan(
@@ -3886,7 +3887,7 @@ class mainTextWidget {
           children: <TextSpan>[
             TextSpan(
               text:
-              "אֱלֹהִים צְבָאוֹת שׁוּב נָא הַבֵּט מִשָּׁמַיִם וּרְאֵה וּפְקֹד גֶּפֶן זֹאת",
+                  "אֱלֹהִים צְבָאוֹת שׁוּב נָא הַבֵּט מִשָּׁמַיִם וּרְאֵה וּפְקֹד גֶּפֶן זֹאת",
               style: textStyleSimpleText,
             ),
             TextSpan(
@@ -3913,7 +3914,7 @@ class mainTextWidget {
           children: <TextSpan>[
             TextSpan(
               text:
-              "וְכַנָּה אֲשֶׁר נָטְעָה יְמִינֶךָ וְעַל בֵּן אִמַּצְתָּה לָּךְ",
+                  "וְכַנָּה אֲשֶׁר נָטְעָה יְמִינֶךָ וְעַל בֵּן אִמַּצְתָּה לָּךְ",
               style: textStyleSimpleText,
             ),
             TextSpan(
@@ -3939,8 +3940,7 @@ class mainTextWidget {
         textSpan: TextSpan(
           children: <TextSpan>[
             TextSpan(
-              text:
-              "שְׂרֻפָה בָאֵשׁ כְּסוּחָה מִגַּעֲרַת פָּנֶיךָ יֹאבֵדוּ",
+              text: "שְׂרֻפָה בָאֵשׁ כְּסוּחָה מִגַּעֲרַת פָּנֶיךָ יֹאבֵדוּ",
               style: textStyleSimpleText,
             ),
             TextSpan(
@@ -3967,7 +3967,7 @@ class mainTextWidget {
           children: <TextSpan>[
             TextSpan(
               text:
-              "תְּהִי יָדְךָ עַל אִישׁ יְמִינֶךָ עַל בֶּן אָדָם אִמַּצְתָּ לָּךְ",
+                  "תְּהִי יָדְךָ עַל אִישׁ יְמִינֶךָ עַל בֶּן אָדָם אִמַּצְתָּ לָּךְ",
               style: textStyleSimpleText,
             ),
             TextSpan(
@@ -3993,8 +3993,7 @@ class mainTextWidget {
         textSpan: TextSpan(
           children: <TextSpan>[
             TextSpan(
-              text:
-              "וְלֹא נָסוֹג מִמֶּךָּ תְּחַיֵּנוּ וּבְשִׁמְךָ נִקְרָא",
+              text: "וְלֹא נָסוֹג מִמֶּךָּ תְּחַיֵּנוּ וּבְשִׁמְךָ נִקְרָא",
               style: textStyleSimpleText,
             ),
             TextSpan(
@@ -4021,7 +4020,7 @@ class mainTextWidget {
           children: <TextSpan>[
             TextSpan(
               text:
-              "יְהוָה אֱלֹהִים צְבָאוֹת הֲשִׁיבֵנוּ הָאֵר פָּנֶיךָ וְנִוָּשֵׁעָה",
+                  "יְהוָה אֱלֹהִים צְבָאוֹת הֲשִׁיבֵנוּ הָאֵר פָּנֶיךָ וְנִוָּשֵׁעָה",
               style: textStyleSimpleText,
             ),
             TextSpan(
@@ -4031,8 +4030,6 @@ class mainTextWidget {
           ],
         ),
       ),
-
-
 
       SizedBox(height: longSpace),
 
@@ -4066,8 +4063,7 @@ class mainTextWidget {
         textSpan: TextSpan(
           children: <TextSpan>[
             TextSpan(
-              text:
-              "שִׁיר מִזְמוֹר לְאָסָף",
+              text: "שִׁיר מִזְמוֹר לְאָסָף",
               style: textStyleSimpleText,
             ),
             TextSpan(
@@ -4094,7 +4090,7 @@ class mainTextWidget {
           children: <TextSpan>[
             TextSpan(
               text:
-              "אֱלֹהִים אַל דֳּמִי לָךְ אַל תֶּחֱרַשׁ וְאַל תִּשְׁקֹט אֵל",
+                  "אֱלֹהִים אַל דֳּמִי לָךְ אַל תֶּחֱרַשׁ וְאַל תִּשְׁקֹט אֵל",
               style: textStyleSimpleText,
             ),
             TextSpan(
@@ -4121,7 +4117,7 @@ class mainTextWidget {
           children: <TextSpan>[
             TextSpan(
               text:
-              "כִּי הִנֵּה אוֹיְבֶיךָ יֶהֱמָיוּן וּמְשַׂנְאֶיךָ נָשְׂאוּ רֹאשׁ",
+                  "כִּי הִנֵּה אוֹיְבֶיךָ יֶהֱמָיוּן וּמְשַׂנְאֶיךָ נָשְׂאוּ רֹאשׁ",
               style: textStyleSimpleText,
             ),
             TextSpan(
@@ -4147,8 +4143,7 @@ class mainTextWidget {
         textSpan: TextSpan(
           children: <TextSpan>[
             TextSpan(
-              text:
-              "עַל עַמְּךָ יַעֲרִימוּ סוֹד וְיִתְיָעֲצוּ עַל צְפוּנֶיךָ",
+              text: "עַל עַמְּךָ יַעֲרִימוּ סוֹד וְיִתְיָעֲצוּ עַל צְפוּנֶיךָ",
               style: textStyleSimpleText,
             ),
             TextSpan(
@@ -4175,7 +4170,7 @@ class mainTextWidget {
           children: <TextSpan>[
             TextSpan(
               text:
-              "אָמְרוּ לְכוּ וְנַכְחִידֵם מִגּוֹי וְלֹא יִזָּכֵר שֵׁם יִשְׂרָאֵל עוֹד",
+                  "אָמְרוּ לְכוּ וְנַכְחִידֵם מִגּוֹי וְלֹא יִזָּכֵר שֵׁם יִשְׂרָאֵל עוֹד",
               style: textStyleSimpleText,
             ),
             TextSpan(
@@ -4201,8 +4196,7 @@ class mainTextWidget {
         textSpan: TextSpan(
           children: <TextSpan>[
             TextSpan(
-              text:
-              "כִּי נוֹעֲצוּ לֵב יַחְדָּו עָלֶיךָ בְּרִית יִכְרֹתוּ",
+              text: "כִּי נוֹעֲצוּ לֵב יַחְדָּו עָלֶיךָ בְּרִית יִכְרֹתוּ",
               style: textStyleSimpleText,
             ),
             TextSpan(
@@ -4228,8 +4222,7 @@ class mainTextWidget {
         textSpan: TextSpan(
           children: <TextSpan>[
             TextSpan(
-              text:
-              "אָהֳלֵי אֱדוֹם וְיִשְׁמְעֵאלִים מוֹאָב וְהַגְרִים",
+              text: "אָהֳלֵי אֱדוֹם וְיִשְׁמְעֵאלִים מוֹאָב וְהַגְרִים",
               style: textStyleSimpleText,
             ),
             TextSpan(
@@ -4255,8 +4248,7 @@ class mainTextWidget {
         textSpan: TextSpan(
           children: <TextSpan>[
             TextSpan(
-              text:
-              "גְּבָל וְעַמּוֹן וַעֲמָלֵק פְּלֶשֶׁת עִם יֹשְׁבֵי צוֹר",
+              text: "גְּבָל וְעַמּוֹן וַעֲמָלֵק פְּלֶשֶׁת עִם יֹשְׁבֵי צוֹר",
               style: textStyleSimpleText,
             ),
             TextSpan(
@@ -4283,7 +4275,7 @@ class mainTextWidget {
           children: <TextSpan>[
             TextSpan(
               text:
-              "גַּם אַשּׁוּר נִלְוָה עִמָּם הָיוּ זְרוֹעַ לִבְנֵי לוֹט סֶלָה",
+                  "גַּם אַשּׁוּר נִלְוָה עִמָּם הָיוּ זְרוֹעַ לִבְנֵי לוֹט סֶלָה",
               style: textStyleSimpleText,
             ),
             TextSpan(
@@ -4310,7 +4302,7 @@ class mainTextWidget {
           children: <TextSpan>[
             TextSpan(
               text:
-              "עֲשֵׂה לָהֶם כְּמִדְיָן כְּסִיסְרָא כְיָבִין בְּנַחַל קִישׁוֹן",
+                  "עֲשֵׂה לָהֶם כְּמִדְיָן כְּסִיסְרָא כְיָבִין בְּנַחַל קִישׁוֹן",
               style: textStyleSimpleText,
             ),
             TextSpan(
@@ -4336,18 +4328,15 @@ class mainTextWidget {
         textSpan: TextSpan(
           children: <TextSpan>[
             TextSpan(
-              text:
-              "נִשְׁמְדוּ בְעֵין דֹּאר ",
+              text: "נִשְׁמְדוּ בְעֵין דֹּאר ",
               style: textStyleSimpleText,
             ),
             TextSpan(
-              text:
-              "(כמו: דֹּר)",
+              text: "(כמו: דֹּר)",
               style: textStyleSimpleText_pasokNotes,
             ),
             TextSpan(
-              text:
-              " הָיוּ דֹּמֶן לָאֲדָמָה",
+              text: " הָיוּ דֹּמֶן לָאֲדָמָה",
               style: textStyleSimpleText,
             ),
             TextSpan(
@@ -4374,7 +4363,7 @@ class mainTextWidget {
           children: <TextSpan>[
             TextSpan(
               text:
-              "שִׁיתֵמוֹ נְדִיבֵימוֹ כְּעֹרֵב וְכִזְאֵב וּכְזֶבַח וּכְצַלְמֻנָּע כָּל נְסִיכֵימוֹ",
+                  "שִׁיתֵמוֹ נְדִיבֵימוֹ כְּעֹרֵב וְכִזְאֵב וּכְזֶבַח וּכְצַלְמֻנָּע כָּל נְסִיכֵימוֹ",
               style: textStyleSimpleText,
             ),
             TextSpan(
@@ -4400,8 +4389,7 @@ class mainTextWidget {
         textSpan: TextSpan(
           children: <TextSpan>[
             TextSpan(
-              text:
-              "אֲשֶׁר אָמְרוּ נִירְשָׁה לָּנוּ אֵת נְאוֹת אֱלֹהִים",
+              text: "אֲשֶׁר אָמְרוּ נִירְשָׁה לָּנוּ אֵת נְאוֹת אֱלֹהִים",
               style: textStyleSimpleText,
             ),
             TextSpan(
@@ -4427,8 +4415,7 @@ class mainTextWidget {
         textSpan: TextSpan(
           children: <TextSpan>[
             TextSpan(
-              text:
-              "אֱלֹהַי שִׁיתֵמוֹ כַגַּלְגַּל כְּקַשׁ לִפְנֵי רוּח",
+              text: "אֱלֹהַי שִׁיתֵמוֹ כַגַּלְגַּל כְּקַשׁ לִפְנֵי רוּח",
               style: textStyleSimpleText,
             ),
             TextSpan(
@@ -4454,8 +4441,7 @@ class mainTextWidget {
         textSpan: TextSpan(
           children: <TextSpan>[
             TextSpan(
-              text:
-              "כְּאֵשׁ תִּבְעַר יָעַר וּכְלֶהָבָה תְּלַהֵט הָרִים",
+              text: "כְּאֵשׁ תִּבְעַר יָעַר וּכְלֶהָבָה תְּלַהֵט הָרִים",
               style: textStyleSimpleText,
             ),
             TextSpan(
@@ -4481,8 +4467,7 @@ class mainTextWidget {
         textSpan: TextSpan(
           children: <TextSpan>[
             TextSpan(
-              text:
-              "כֵּן תִּרְדְּפֵם בְּסַעֲרֶךָ וּבְסוּפָתְךָ תְבַהֲלֵם",
+              text: "כֵּן תִּרְדְּפֵם בְּסַעֲרֶךָ וּבְסוּפָתְךָ תְבַהֲלֵם",
               style: textStyleSimpleText,
             ),
             TextSpan(
@@ -4508,8 +4493,7 @@ class mainTextWidget {
         textSpan: TextSpan(
           children: <TextSpan>[
             TextSpan(
-              text:
-              "מַלֵּא פְנֵיהֶם קָלוֹן וִיבַקְשׁוּ שִׁמְךָ יְהוָה",
+              text: "מַלֵּא פְנֵיהֶם קָלוֹן וִיבַקְשׁוּ שִׁמְךָ יְהוָה",
               style: textStyleSimpleText,
             ),
             TextSpan(
@@ -4535,8 +4519,7 @@ class mainTextWidget {
         textSpan: TextSpan(
           children: <TextSpan>[
             TextSpan(
-              text:
-              "יֵבֹשׁוּ וְיִבָּהֲלוּ עֲדֵי עַד וְיַחְפְּרוּ וְיֹאבֵדוּ",
+              text: "יֵבֹשׁוּ וְיִבָּהֲלוּ עֲדֵי עַד וְיַחְפְּרוּ וְיֹאבֵדוּ",
               style: textStyleSimpleText,
             ),
             TextSpan(
@@ -4563,7 +4546,7 @@ class mainTextWidget {
           children: <TextSpan>[
             TextSpan(
               text:
-              "וְיֵדְעוּ כִּי אַתָּה שִׁמְךָ יְהוָה לְבַדֶּךָ עֶלְיוֹן עַל כָּל הָאָרֶץ",
+                  "וְיֵדְעוּ כִּי אַתָּה שִׁמְךָ יְהוָה לְבַדֶּךָ עֶלְיוֹן עַל כָּל הָאָרֶץ",
               style: textStyleSimpleText,
             ),
             TextSpan(
@@ -4573,9 +4556,6 @@ class mainTextWidget {
           ],
         ),
       ),
-
-
-
 
       SizedBox(height: longSpace),
 
@@ -4610,7 +4590,7 @@ class mainTextWidget {
           children: <TextSpan>[
             TextSpan(
               text:
-              "שִׁיר מִזְמוֹר לִבְנֵי קֹרַח לַמְנַצֵּחַ עַל מָחֲלַת לְעַנּוֹת מַשְׂכִּיל לְהֵימָן הָאֶזְרָחִי",
+                  "שִׁיר מִזְמוֹר לִבְנֵי קֹרַח לַמְנַצֵּחַ עַל מָחֲלַת לְעַנּוֹת מַשְׂכִּיל לְהֵימָן הָאֶזְרָחִי",
               style: textStyleSimpleText,
             ),
             TextSpan(
@@ -4637,7 +4617,7 @@ class mainTextWidget {
           children: <TextSpan>[
             TextSpan(
               text:
-              "יְהוָה אֱלֹהֵי יְשׁוּעָתִי יוֹם צָעַקְתִּי בַלַּיְלָה נֶגְדֶּךָ",
+                  "יְהוָה אֱלֹהֵי יְשׁוּעָתִי יוֹם צָעַקְתִּי בַלַּיְלָה נֶגְדֶּךָ",
               style: textStyleSimpleText,
             ),
             TextSpan(
@@ -4663,8 +4643,7 @@ class mainTextWidget {
         textSpan: TextSpan(
           children: <TextSpan>[
             TextSpan(
-              text:
-              "תָּבוֹא לְפָנֶיךָ תְּפִלָּתִי הַטֵּה אָזְנְךָ לְרִנָּתִי",
+              text: "תָּבוֹא לְפָנֶיךָ תְּפִלָּתִי הַטֵּה אָזְנְךָ לְרִנָּתִי",
               style: textStyleSimpleText,
             ),
             TextSpan(
@@ -4691,7 +4670,7 @@ class mainTextWidget {
           children: <TextSpan>[
             TextSpan(
               text:
-              "כִּי שָׂבְעָה בְרָעוֹת נַפְשִׁי וְחַיַּי לִשְׁאוֹל הִגִּיעו",
+                  "כִּי שָׂבְעָה בְרָעוֹת נַפְשִׁי וְחַיַּי לִשְׁאוֹל הִגִּיעו",
               style: textStyleSimpleText,
             ),
             TextSpan(
@@ -4718,7 +4697,7 @@ class mainTextWidget {
           children: <TextSpan>[
             TextSpan(
               text:
-              "נֶחְשַׁבְתִּי עִם יוֹרְדֵי בוֹר הָיִיתִי כְּגֶבֶר אֵין אֱיָל",
+                  "נֶחְשַׁבְתִּי עִם יוֹרְדֵי בוֹר הָיִיתִי כְּגֶבֶר אֵין אֱיָל",
               style: textStyleSimpleText,
             ),
             TextSpan(
@@ -4745,7 +4724,7 @@ class mainTextWidget {
           children: <TextSpan>[
             TextSpan(
               text:
-              "בַּמֵּתִים חָפְשִׁי כְּמוֹ חֲלָלִים שֹׁכְבֵי קֶבֶר אֲשֶׁר לֹא זְכַרְתָּם עוֹד וְהֵמָּה מִיָּדְךָ נִגְזָרוּ",
+                  "בַּמֵּתִים חָפְשִׁי כְּמוֹ חֲלָלִים שֹׁכְבֵי קֶבֶר אֲשֶׁר לֹא זְכַרְתָּם עוֹד וְהֵמָּה מִיָּדְךָ נִגְזָרוּ",
               style: textStyleSimpleText,
             ),
             TextSpan(
@@ -4772,7 +4751,7 @@ class mainTextWidget {
           children: <TextSpan>[
             TextSpan(
               text:
-              "שַׁתַּנִי בְּבוֹר תַּחְתִּיּוֹת בְּמַחֲשַׁכִּים בִּמְצֹלוֹת",
+                  "שַׁתַּנִי בְּבוֹר תַּחְתִּיּוֹת בְּמַחֲשַׁכִּים בִּמְצֹלוֹת",
               style: textStyleSimpleText,
             ),
             TextSpan(
@@ -4799,7 +4778,7 @@ class mainTextWidget {
           children: <TextSpan>[
             TextSpan(
               text:
-              "עָלַי סָמְכָה חֲמָתֶךָ וְכָל מִשְׁבָּרֶיךָ עִנִּיתָ סֶּלָה",
+                  "עָלַי סָמְכָה חֲמָתֶךָ וְכָל מִשְׁבָּרֶיךָ עִנִּיתָ סֶּלָה",
               style: textStyleSimpleText,
             ),
             TextSpan(
@@ -4826,7 +4805,7 @@ class mainTextWidget {
           children: <TextSpan>[
             TextSpan(
               text:
-              "הִרְחַקְתָּ מְיֻדָּעַי מִמֶּנִּי שַׁתַּנִי תוֹעֵבוֹת לָמוֹ כָּלֻא וְלֹא אֵצֵא",
+                  "הִרְחַקְתָּ מְיֻדָּעַי מִמֶּנִּי שַׁתַּנִי תוֹעֵבוֹת לָמוֹ כָּלֻא וְלֹא אֵצֵא",
               style: textStyleSimpleText,
             ),
             TextSpan(
@@ -4853,7 +4832,7 @@ class mainTextWidget {
           children: <TextSpan>[
             TextSpan(
               text:
-              "עֵינִי דָאֲבָה מִנִּי עֹנִי קְרָאתִיךָ יְהוָה בְּכָל יוֹם שִׁטַּחְתִּי אֵלֶיךָ כַפָּי",
+                  "עֵינִי דָאֲבָה מִנִּי עֹנִי קְרָאתִיךָ יְהוָה בְּכָל יוֹם שִׁטַּחְתִּי אֵלֶיךָ כַפָּי",
               style: textStyleSimpleText,
             ),
             TextSpan(
@@ -4880,7 +4859,7 @@ class mainTextWidget {
           children: <TextSpan>[
             TextSpan(
               text:
-              "הֲלַמֵּתִים תַּעֲשֶׂה פֶּלֶא אִם רְפָאִים יָקוּמוּ יוֹדוּךָ סֶּלָה",
+                  "הֲלַמֵּתִים תַּעֲשֶׂה פֶּלֶא אִם רְפָאִים יָקוּמוּ יוֹדוּךָ סֶּלָה",
               style: textStyleSimpleText,
             ),
             TextSpan(
@@ -4906,8 +4885,7 @@ class mainTextWidget {
         textSpan: TextSpan(
           children: <TextSpan>[
             TextSpan(
-              text:
-              "הַיְסֻפַּר בַּקֶּבֶר חַסְדֶּךָ אֱמוּנָתְךָ בָּאֲבַדּוֹן",
+              text: "הַיְסֻפַּר בַּקֶּבֶר חַסְדֶּךָ אֱמוּנָתְךָ בָּאֲבַדּוֹן",
               style: textStyleSimpleText,
             ),
             TextSpan(
@@ -4934,7 +4912,7 @@ class mainTextWidget {
           children: <TextSpan>[
             TextSpan(
               text:
-              "הֲיִוָּדַע בַּחֹשֶׁךְ פִּלְאֶךָ וְצִדְקָתְךָ בְּאֶרֶץ נְשִׁיָּה",
+                  "הֲיִוָּדַע בַּחֹשֶׁךְ פִּלְאֶךָ וְצִדְקָתְךָ בְּאֶרֶץ נְשִׁיָּה",
               style: textStyleSimpleText,
             ),
             TextSpan(
@@ -4961,7 +4939,7 @@ class mainTextWidget {
           children: <TextSpan>[
             TextSpan(
               text:
-              "וַאֲנִי אֵלֶיךָ יְהוָה שִׁוַּעְתִּי וּבַבֹּקֶר תְּפִלָּתִי תְקַדְּמֶךּ",
+                  "וַאֲנִי אֵלֶיךָ יְהוָה שִׁוַּעְתִּי וּבַבֹּקֶר תְּפִלָּתִי תְקַדְּמֶךּ",
               style: textStyleSimpleText,
             ),
             TextSpan(
@@ -4988,7 +4966,7 @@ class mainTextWidget {
           children: <TextSpan>[
             TextSpan(
               text:
-              "לָמָה יְהוָה תִּזְנַח נַפְשִׁי תַּסְתִּיר פָּנֶיךָ מִמֶּנִּי",
+                  "לָמָה יְהוָה תִּזְנַח נַפְשִׁי תַּסְתִּיר פָּנֶיךָ מִמֶּנִּי",
               style: textStyleSimpleText,
             ),
             TextSpan(
@@ -5014,8 +4992,7 @@ class mainTextWidget {
         textSpan: TextSpan(
           children: <TextSpan>[
             TextSpan(
-              text:
-              "עָנִי אֲנִי וְגֹוֵעַ מִנֹּעַר נָשָׂאתִי אֵמֶיךָ אָפוּנָה",
+              text: "עָנִי אֲנִי וְגֹוֵעַ מִנֹּעַר נָשָׂאתִי אֵמֶיךָ אָפוּנָה",
               style: textStyleSimpleText,
             ),
             TextSpan(
@@ -5041,8 +5018,7 @@ class mainTextWidget {
         textSpan: TextSpan(
           children: <TextSpan>[
             TextSpan(
-              text:
-              "עָלַי עָבְרוּ חֲרוֹנֶיךָ בִּעוּתֶיךָ צִמְּתוּתֻנִי",
+              text: "עָלַי עָבְרוּ חֲרוֹנֶיךָ בִּעוּתֶיךָ צִמְּתוּתֻנִי",
               style: textStyleSimpleText,
             ),
             TextSpan(
@@ -5068,8 +5044,7 @@ class mainTextWidget {
         textSpan: TextSpan(
           children: <TextSpan>[
             TextSpan(
-              text:
-              "סַבּוּנִי כַמַּיִם כָּל הַיּוֹם הִקִּיפוּ עָלַי יָחַד",
+              text: "סַבּוּנִי כַמַּיִם כָּל הַיּוֹם הִקִּיפוּ עָלַי יָחַד",
               style: textStyleSimpleText,
             ),
             TextSpan(
@@ -5095,8 +5070,7 @@ class mainTextWidget {
         textSpan: TextSpan(
           children: <TextSpan>[
             TextSpan(
-              text:
-              "הִרְחַקְתָּ מִמֶּנִּי אֹהֵב וָרֵעַ מְיֻדָּעַי מַחְשָׁךְ",
+              text: "הִרְחַקְתָּ מִמֶּנִּי אֹהֵב וָרֵעַ מְיֻדָּעַי מַחְשָׁךְ",
               style: textStyleSimpleText,
             ),
             TextSpan(
@@ -5106,7 +5080,6 @@ class mainTextWidget {
           ],
         ),
       ),
-
 
       SizedBox(height: longSpace),
 
@@ -5140,8 +5113,7 @@ class mainTextWidget {
         textSpan: TextSpan(
           children: <TextSpan>[
             TextSpan(
-              text:
-              "מַשְׂכִּיל לְאֵיתָן הָאֶזְרָחִי",
+              text: "מַשְׂכִּיל לְאֵיתָן הָאֶזְרָחִי",
               style: textStyleSimpleText,
             ),
             TextSpan(
@@ -5168,7 +5140,7 @@ class mainTextWidget {
           children: <TextSpan>[
             TextSpan(
               text:
-              "חַסְדֵי יְהוָה עוֹלָם אָשִׁירָה לְדֹר וָדֹר אוֹדִיעַ אֱמוּנָתְךָ בְּפִי",
+                  "חַסְדֵי יְהוָה עוֹלָם אָשִׁירָה לְדֹר וָדֹר אוֹדִיעַ אֱמוּנָתְךָ בְּפִי",
               style: textStyleSimpleText,
             ),
             TextSpan(
@@ -5195,7 +5167,7 @@ class mainTextWidget {
           children: <TextSpan>[
             TextSpan(
               text:
-              " כִּי אָמַרְתִּי עוֹלָם חֶסֶד יִבָּנֶה שָׁמַיִם תָּכִן אֱמוּנָתְךָ בָהֶם",
+                  " כִּי אָמַרְתִּי עוֹלָם חֶסֶד יִבָּנֶה שָׁמַיִם תָּכִן אֱמוּנָתְךָ בָהֶם",
               style: textStyleSimpleText,
             ),
             TextSpan(
@@ -5222,7 +5194,7 @@ class mainTextWidget {
           children: <TextSpan>[
             TextSpan(
               text:
-              "כָּרַתִּי בְרִית לִבְחִירִי נִשְׁבַּעְתִּי לְדָוִד עַבְדִּי",
+                  "כָּרַתִּי בְרִית לִבְחִירִי נִשְׁבַּעְתִּי לְדָוִד עַבְדִּי",
               style: textStyleSimpleText,
             ),
             TextSpan(
@@ -5249,7 +5221,7 @@ class mainTextWidget {
           children: <TextSpan>[
             TextSpan(
               text:
-              "עַד עוֹלָם אָכִין זַרְעֶךָ וּבָנִיתִי לְדֹר וָדוֹר כִּסְאֲךָ סֶלָה",
+                  "עַד עוֹלָם אָכִין זַרְעֶךָ וּבָנִיתִי לְדֹר וָדוֹר כִּסְאֲךָ סֶלָה",
               style: textStyleSimpleText,
             ),
             TextSpan(
@@ -5276,7 +5248,7 @@ class mainTextWidget {
           children: <TextSpan>[
             TextSpan(
               text:
-              "וְיוֹדוּ שָׁמַיִם פִּלְאֲךָ יְהוָה אַף אֱמוּנָתְךָ בִּקְהַל קְדֹשִׁים",
+                  "וְיוֹדוּ שָׁמַיִם פִּלְאֲךָ יְהוָה אַף אֱמוּנָתְךָ בִּקְהַל קְדֹשִׁים",
               style: textStyleSimpleText,
             ),
             TextSpan(
@@ -5302,21 +5274,17 @@ class mainTextWidget {
         textSpan: TextSpan(
           children: <TextSpan>[
             TextSpan(
-              text:
-              "כִּי מִי בַשַּׁחַק יַעֲרֹךְ לַיהוָה ",
+              text: "כִּי מִי בַשַּׁחַק יַעֲרֹךְ לַיהוָה ",
               style: textStyleSimpleText,
             ),
             TextSpan(
-              text:
-              "(לַדוֹנָי – א נחה)",
+              text: "(לַדוֹנָי – א נחה)",
               style: textStyleSimpleText_pasokNotes,
             ),
             TextSpan(
-              text:
-              " יִדְמֶה לַיהוָה בִּבְנֵי אֵלִים",
+              text: " יִדְמֶה לַיהוָה בִּבְנֵי אֵלִים",
               style: textStyleSimpleText,
             ),
-
             TextSpan(
               text: endOfPasokStr,
               style: textStyleSimpleText,
@@ -5341,7 +5309,7 @@ class mainTextWidget {
           children: <TextSpan>[
             TextSpan(
               text:
-              "אֵל נַעֲרָץ בְּסוֹד קְדֹשִׁים רַבָּה וְנוֹרָא עַל כָּל סְבִיבָיו",
+                  "אֵל נַעֲרָץ בְּסוֹד קְדֹשִׁים רַבָּה וְנוֹרָא עַל כָּל סְבִיבָיו",
               style: textStyleSimpleText,
             ),
             TextSpan(
@@ -5368,7 +5336,7 @@ class mainTextWidget {
           children: <TextSpan>[
             TextSpan(
               text:
-              "יְהוָה אֱלֹהֵי צְבָאוֹת מִי כָמוֹךָ חֲסִין יָהּ וֶאֱמוּנָתְךָ סְבִיבוֹתֶיךָ",
+                  "יְהוָה אֱלֹהֵי צְבָאוֹת מִי כָמוֹךָ חֲסִין יָהּ וֶאֱמוּנָתְךָ סְבִיבוֹתֶיךָ",
               style: textStyleSimpleText,
             ),
             TextSpan(
@@ -5395,7 +5363,7 @@ class mainTextWidget {
           children: <TextSpan>[
             TextSpan(
               text:
-              "אַתָּה מוֹשֵׁל בְּגֵאוּת הַיָּם בְּשׂוֹא גַלָּיו אַתָּה תְשַׁבְּחֵם",
+                  "אַתָּה מוֹשֵׁל בְּגֵאוּת הַיָּם בְּשׂוֹא גַלָּיו אַתָּה תְשַׁבְּחֵם",
               style: textStyleSimpleText,
             ),
             TextSpan(
@@ -5422,7 +5390,7 @@ class mainTextWidget {
           children: <TextSpan>[
             TextSpan(
               text:
-              "אַתָּה דִכִּאתָ כֶחָלָל רָהַב בִּזְרוֹעַ עֻזְּךָ פִּזַּרְתָּ אוֹיְבֶיךָ",
+                  "אַתָּה דִכִּאתָ כֶחָלָל רָהַב בִּזְרוֹעַ עֻזְּךָ פִּזַּרְתָּ אוֹיְבֶיךָ",
               style: textStyleSimpleText,
             ),
             TextSpan(
@@ -5449,7 +5417,7 @@ class mainTextWidget {
           children: <TextSpan>[
             TextSpan(
               text:
-              "לְךָ שָׁמַיִם אַף לְךָ אָרֶץ תֵּבֵל וּמְלֹאָהּ אַתָּה יְסַדְתָּם",
+                  "לְךָ שָׁמַיִם אַף לְךָ אָרֶץ תֵּבֵל וּמְלֹאָהּ אַתָּה יְסַדְתָּם",
               style: textStyleSimpleText,
             ),
             TextSpan(
@@ -5476,7 +5444,7 @@ class mainTextWidget {
           children: <TextSpan>[
             TextSpan(
               text:
-              "צָפוֹן וְיָמִין אַתָּה בְרָאתָם תָּבוֹר וְחֶרְמוֹן בְּשִׁמְךָ יְרַנֵּנוּ",
+                  "צָפוֹן וְיָמִין אַתָּה בְרָאתָם תָּבוֹר וְחֶרְמוֹן בְּשִׁמְךָ יְרַנֵּנוּ",
               style: textStyleSimpleText,
             ),
             TextSpan(
@@ -5503,7 +5471,7 @@ class mainTextWidget {
           children: <TextSpan>[
             TextSpan(
               text:
-              "לְךָ זְרוֹעַ עִם גְּבוּרָה תָּעֹז יָדְךָ תָּרוּם יְמִינֶךָ",
+                  "לְךָ זְרוֹעַ עִם גְּבוּרָה תָּעֹז יָדְךָ תָּרוּם יְמִינֶךָ",
               style: textStyleSimpleText,
             ),
             TextSpan(
@@ -5530,7 +5498,7 @@ class mainTextWidget {
           children: <TextSpan>[
             TextSpan(
               text:
-              "צֶדֶק וּמִשְׁפָּט מְכוֹן כִּסְאֶךָ חֶסֶד וֶאֱמֶת יְקַדְּמוּ פָנֶיךָ",
+                  "צֶדֶק וּמִשְׁפָּט מְכוֹן כִּסְאֶךָ חֶסֶד וֶאֱמֶת יְקַדְּמוּ פָנֶיךָ",
               style: textStyleSimpleText,
             ),
             TextSpan(
@@ -5557,7 +5525,7 @@ class mainTextWidget {
           children: <TextSpan>[
             TextSpan(
               text:
-              "אַשְׁרֵי הָעָם יֹדְעֵי תְרוּעָה יְהוָה בְּאוֹר פָּנֶיךָ יְהַלֵּכוּן",
+                  "אַשְׁרֵי הָעָם יֹדְעֵי תְרוּעָה יְהוָה בְּאוֹר פָּנֶיךָ יְהַלֵּכוּן",
               style: textStyleSimpleText,
             ),
             TextSpan(
@@ -5583,8 +5551,7 @@ class mainTextWidget {
         textSpan: TextSpan(
           children: <TextSpan>[
             TextSpan(
-              text:
-              "בְּשִׁמְךָ יְגִילוּן כָּל הַיּוֹם וּבְצִדְקָתְךָ יָרוּמוּ",
+              text: "בְּשִׁמְךָ יְגִילוּן כָּל הַיּוֹם וּבְצִדְקָתְךָ יָרוּמוּ",
               style: textStyleSimpleText,
             ),
             TextSpan(
@@ -5610,18 +5577,15 @@ class mainTextWidget {
         textSpan: TextSpan(
           children: <TextSpan>[
             TextSpan(
-              text:
-              " כִּי תִפְאֶרֶת עֻזָּמוֹ אָתָּה וּבִרְצוֹנְךָ תָּרוּם ",
+              text: " כִּי תִפְאֶרֶת עֻזָּמוֹ אָתָּה וּבִרְצוֹנְךָ תָּרוּם ",
               style: textStyleSimpleText,
             ),
             TextSpan(
-              text:
-              "(כתיב: תרים)",
+              text: "(כתיב: תרים)",
               style: textStyleSimpleText_pasokNotes,
             ),
             TextSpan(
-              text:
-              " קַרְנֵינוּ",
+              text: " קַרְנֵינוּ",
               style: textStyleSimpleText,
             ),
             TextSpan(
@@ -5647,18 +5611,15 @@ class mainTextWidget {
         textSpan: TextSpan(
           children: <TextSpan>[
             TextSpan(
-              text:
-              "כִּי לַיהוָה ",
+              text: "כִּי לַיהוָה ",
               style: textStyleSimpleText,
             ),
             TextSpan(
-              text:
-              "(לַדוֹנָי - א נחה)",
+              text: "(לַדוֹנָי - א נחה)",
               style: textStyleSimpleText_pasokNotes,
             ),
             TextSpan(
-              text:
-              " מָגִנֵּנוּ וְלִקְדוֹשׁ יִשְׂרָאֵל מַלְכֵּנוּ",
+              text: " מָגִנֵּנוּ וְלִקְדוֹשׁ יִשְׂרָאֵל מַלְכֵּנוּ",
               style: textStyleSimpleText,
             ),
             TextSpan(
@@ -5685,7 +5646,7 @@ class mainTextWidget {
           children: <TextSpan>[
             TextSpan(
               text:
-              "אָז דִּבַּרְתָּ בְחָזוֹן לַחֲסִידֶיךָ וַתֹּאמֶר שִׁוִּיתִי עֵזֶר עַל גִּבּוֹר הֲרִימוֹתִי בָחוּר מֵעָם",
+                  "אָז דִּבַּרְתָּ בְחָזוֹן לַחֲסִידֶיךָ וַתֹּאמֶר שִׁוִּיתִי עֵזֶר עַל גִּבּוֹר הֲרִימוֹתִי בָחוּר מֵעָם",
               style: textStyleSimpleText,
             ),
             TextSpan(
@@ -5711,8 +5672,7 @@ class mainTextWidget {
         textSpan: TextSpan(
           children: <TextSpan>[
             TextSpan(
-              text:
-              "מָצָאתִי דָּוִד עַבְדִּי בְּשֶׁמֶן קָדְשִׁי מְשַׁחְתִּיו",
+              text: "מָצָאתִי דָּוִד עַבְדִּי בְּשֶׁמֶן קָדְשִׁי מְשַׁחְתִּיו",
               style: textStyleSimpleText,
             ),
             TextSpan(
@@ -5738,8 +5698,7 @@ class mainTextWidget {
         textSpan: TextSpan(
           children: <TextSpan>[
             TextSpan(
-              text:
-              "אֲשֶׁר יָדִי תִּכּוֹן עִמּוֹ אַף זְרוֹעִי תְאַמְּצֶנּוּ",
+              text: "אֲשֶׁר יָדִי תִּכּוֹן עִמּוֹ אַף זְרוֹעִי תְאַמְּצֶנּוּ",
               style: textStyleSimpleText,
             ),
             TextSpan(
@@ -5765,8 +5724,7 @@ class mainTextWidget {
         textSpan: TextSpan(
           children: <TextSpan>[
             TextSpan(
-              text:
-              "לֹא יַשִּׁיא אוֹיֵב בּוֹ וּבֶן עַוְלָה לֹא יְעַנֶּנּוּ",
+              text: "לֹא יַשִּׁיא אוֹיֵב בּוֹ וּבֶן עַוְלָה לֹא יְעַנֶּנּוּ",
               style: textStyleSimpleText,
             ),
             TextSpan(
@@ -5792,8 +5750,7 @@ class mainTextWidget {
         textSpan: TextSpan(
           children: <TextSpan>[
             TextSpan(
-              text:
-              "וְכַתּוֹתִי מִפָּנָיו צָרָיו וּמְשַׂנְאָיו אֶגּוֹף",
+              text: "וְכַתּוֹתִי מִפָּנָיו צָרָיו וּמְשַׂנְאָיו אֶגּוֹף",
               style: textStyleSimpleText,
             ),
             TextSpan(
@@ -5819,8 +5776,7 @@ class mainTextWidget {
         textSpan: TextSpan(
           children: <TextSpan>[
             TextSpan(
-              text:
-              "וֶאֱמוּנָתִי וְחַסְדִּי עִמּוֹ וּבִשְׁמִי תָּרוּם קַרְנוֹ",
+              text: "וֶאֱמוּנָתִי וְחַסְדִּי עִמּוֹ וּבִשְׁמִי תָּרוּם קַרְנוֹ",
               style: textStyleSimpleText,
             ),
             TextSpan(
@@ -5846,8 +5802,7 @@ class mainTextWidget {
         textSpan: TextSpan(
           children: <TextSpan>[
             TextSpan(
-              text:
-              "וְשַׂמְתִּי בַיָּם יָדוֹ וּבַנְּהָרוֹת יְמִינוֹ",
+              text: "וְשַׂמְתִּי בַיָּם יָדוֹ וּבַנְּהָרוֹת יְמִינוֹ",
               style: textStyleSimpleText,
             ),
             TextSpan(
@@ -5873,8 +5828,7 @@ class mainTextWidget {
         textSpan: TextSpan(
           children: <TextSpan>[
             TextSpan(
-              text:
-              "הוּא יִקְרָאֵנִי אָבִי אָתָּה אֵלִי וְצוּר יְשׁוּעָתִי",
+              text: "הוּא יִקְרָאֵנִי אָבִי אָתָּה אֵלִי וְצוּר יְשׁוּעָתִי",
               style: textStyleSimpleText,
             ),
             TextSpan(
@@ -5900,8 +5854,7 @@ class mainTextWidget {
         textSpan: TextSpan(
           children: <TextSpan>[
             TextSpan(
-              text:
-              "אַף אָנִי בְּכוֹר אֶתְּנֵהוּ עֶלְיוֹן לְמַלְכֵי אָרֶץ",
+              text: "אַף אָנִי בְּכוֹר אֶתְּנֵהוּ עֶלְיוֹן לְמַלְכֵי אָרֶץ",
               style: textStyleSimpleText,
             ),
             TextSpan(
@@ -5927,8 +5880,7 @@ class mainTextWidget {
         textSpan: TextSpan(
           children: <TextSpan>[
             TextSpan(
-              text:
-              "לְעוֹלָם אֶשְׁמֹר לוֹ חַסְדִּי וּבְרִיתִי נֶאֱמֶנֶת לוֹ",
+              text: "לְעוֹלָם אֶשְׁמֹר לוֹ חַסְדִּי וּבְרִיתִי נֶאֱמֶנֶת לוֹ",
               style: textStyleSimpleText,
             ),
             TextSpan(
@@ -5954,8 +5906,7 @@ class mainTextWidget {
         textSpan: TextSpan(
           children: <TextSpan>[
             TextSpan(
-              text:
-              "וְשַׂמְתִּי לָעַד זַרְעוֹ וְכִסְאוֹ כִּימֵי שָׁמָיִם",
+              text: "וְשַׂמְתִּי לָעַד זַרְעוֹ וְכִסְאוֹ כִּימֵי שָׁמָיִם",
               style: textStyleSimpleText,
             ),
             TextSpan(
@@ -5982,7 +5933,7 @@ class mainTextWidget {
           children: <TextSpan>[
             TextSpan(
               text:
-              "אִם יַעַזְבוּ בָנָיו תּוֹרָתִי וּבְמִשְׁפָּטַי לֹא יֵלֵכוּן",
+                  "אִם יַעַזְבוּ בָנָיו תּוֹרָתִי וּבְמִשְׁפָּטַי לֹא יֵלֵכוּן",
               style: textStyleSimpleText,
             ),
             TextSpan(
@@ -6008,8 +5959,7 @@ class mainTextWidget {
         textSpan: TextSpan(
           children: <TextSpan>[
             TextSpan(
-              text:
-              "אִם חֻקֹּתַי יְחַלֵּלוּ וּמִצְוֹתַי לֹא יִשְׁמֹרוּ",
+              text: "אִם חֻקֹּתַי יְחַלֵּלוּ וּמִצְוֹתַי לֹא יִשְׁמֹרוּ",
               style: textStyleSimpleText,
             ),
             TextSpan(
@@ -6035,8 +5985,7 @@ class mainTextWidget {
         textSpan: TextSpan(
           children: <TextSpan>[
             TextSpan(
-              text:
-              "וּפָקַדְתִּי בְשֵׁבֶט פִּשְׁעָם וּבִנְגָעִים עֲוֹנָם",
+              text: "וּפָקַדְתִּי בְשֵׁבֶט פִּשְׁעָם וּבִנְגָעִים עֲוֹנָם",
               style: textStyleSimpleText,
             ),
             TextSpan(
@@ -6063,7 +6012,7 @@ class mainTextWidget {
           children: <TextSpan>[
             TextSpan(
               text:
-              "וְחַסְדִּי לֹא אָפִיר מֵעִמּוֹ וְלֹא אֲשַׁקֵּר בֶּאֱמוּנָתִי",
+                  "וְחַסְדִּי לֹא אָפִיר מֵעִמּוֹ וְלֹא אֲשַׁקֵּר בֶּאֱמוּנָתִי",
               style: textStyleSimpleText,
             ),
             TextSpan(
@@ -6089,8 +6038,7 @@ class mainTextWidget {
         textSpan: TextSpan(
           children: <TextSpan>[
             TextSpan(
-              text:
-              "לֹא אֲחַלֵּל בְּרִיתִי וּמוֹצָא שְׂפָתַי לֹא אֲשַׁנֶּה",
+              text: "לֹא אֲחַלֵּל בְּרִיתִי וּמוֹצָא שְׂפָתַי לֹא אֲשַׁנֶּה",
               style: textStyleSimpleText,
             ),
             TextSpan(
@@ -6116,8 +6064,7 @@ class mainTextWidget {
         textSpan: TextSpan(
           children: <TextSpan>[
             TextSpan(
-              text:
-              "אַחַת נִשְׁבַּעְתִּי בְקָדְשִׁי אִם לְדָוִד אֲכַזֵּב",
+              text: "אַחַת נִשְׁבַּעְתִּי בְקָדְשִׁי אִם לְדָוִד אֲכַזֵּב",
               style: textStyleSimpleText,
             ),
             TextSpan(
@@ -6143,8 +6090,7 @@ class mainTextWidget {
         textSpan: TextSpan(
           children: <TextSpan>[
             TextSpan(
-              text:
-              "זַרְעוֹ לְעוֹלָם יִהְיֶה וְכִסְאוֹ כַשֶּׁמֶשׁ נֶגְדִּי",
+              text: "זַרְעוֹ לְעוֹלָם יִהְיֶה וְכִסְאוֹ כַשֶּׁמֶשׁ נֶגְדִּי",
               style: textStyleSimpleText,
             ),
             TextSpan(
@@ -6170,8 +6116,7 @@ class mainTextWidget {
         textSpan: TextSpan(
           children: <TextSpan>[
             TextSpan(
-              text:
-              "כְּיָרֵחַ יִכּוֹן עוֹלָם וְעֵד בַּשַּׁחַק נֶאֱמָן סֶלָה",
+              text: "כְּיָרֵחַ יִכּוֹן עוֹלָם וְעֵד בַּשַּׁחַק נֶאֱמָן סֶלָה",
               style: textStyleSimpleText,
             ),
             TextSpan(
@@ -6198,7 +6143,7 @@ class mainTextWidget {
           children: <TextSpan>[
             TextSpan(
               text:
-              "וְאַתָּה זָנַחְתָּ וַתִּמְאָס הִתְעַבַּרְתָּ עִם מְשִׁיחֶךָ",
+                  "וְאַתָּה זָנַחְתָּ וַתִּמְאָס הִתְעַבַּרְתָּ עִם מְשִׁיחֶךָ",
               style: textStyleSimpleText,
             ),
             TextSpan(
@@ -6224,8 +6169,7 @@ class mainTextWidget {
         textSpan: TextSpan(
           children: <TextSpan>[
             TextSpan(
-              text:
-              "נֵאַרְתָּה בְּרִית עַבְדֶּךָ חִלַּלְתָּ לָאָרֶץ נִזְרוֹ",
+              text: "נֵאַרְתָּה בְּרִית עַבְדֶּךָ חִלַּלְתָּ לָאָרֶץ נִזְרוֹ",
               style: textStyleSimpleText,
             ),
             TextSpan(
@@ -6251,8 +6195,7 @@ class mainTextWidget {
         textSpan: TextSpan(
           children: <TextSpan>[
             TextSpan(
-              text:
-              "פָּרַצְתָּ כָל גְּדֵרֹתָיו שַׂמְתָּ מִבְצָרָיו מְחִתָּה",
+              text: "פָּרַצְתָּ כָל גְּדֵרֹתָיו שַׂמְתָּ מִבְצָרָיו מְחִתָּה",
               style: textStyleSimpleText,
             ),
             TextSpan(
@@ -6278,8 +6221,7 @@ class mainTextWidget {
         textSpan: TextSpan(
           children: <TextSpan>[
             TextSpan(
-              text:
-              "שַׁסֻּהוּ כָּל עֹבְרֵי דָרֶךְ הָיָה חֶרְפָּה לִשְׁכֵנָיו",
+              text: "שַׁסֻּהוּ כָּל עֹבְרֵי דָרֶךְ הָיָה חֶרְפָּה לִשְׁכֵנָיו",
               style: textStyleSimpleText,
             ),
             TextSpan(
@@ -6305,8 +6247,7 @@ class mainTextWidget {
         textSpan: TextSpan(
           children: <TextSpan>[
             TextSpan(
-              text:
-              "הֲרִימוֹתָ יְמִין צָרָיו הִשְׂמַחְתָּ כָּל אוֹיְבָיו",
+              text: "הֲרִימוֹתָ יְמִין צָרָיו הִשְׂמַחְתָּ כָּל אוֹיְבָיו",
               style: textStyleSimpleText,
             ),
             TextSpan(
@@ -6332,8 +6273,7 @@ class mainTextWidget {
         textSpan: TextSpan(
           children: <TextSpan>[
             TextSpan(
-              text:
-              "אַף תָּשִׁיב צוּר חַרְבּוֹ וְלֹא הֲקֵימֹתוֹ בַּמִּלְחָמָה",
+              text: "אַף תָּשִׁיב צוּר חַרְבּוֹ וְלֹא הֲקֵימֹתוֹ בַּמִּלְחָמָה",
               style: textStyleSimpleText,
             ),
             TextSpan(
@@ -6359,18 +6299,15 @@ class mainTextWidget {
         textSpan: TextSpan(
           children: <TextSpan>[
             TextSpan(
-              text:
-              "הִשְׁבַּתָּ מִטֳּהָרוֹ ",
+              text: "הִשְׁבַּתָּ מִטֳּהָרוֹ ",
               style: textStyleSimpleText,
             ),
             TextSpan(
-              text:
-              "(צריך לקרוא - מִטּוֹהָרוֹ)",
+              text: "(צריך לקרוא - מִטּוֹהָרוֹ)",
               style: textStyleSimpleText_pasokNotes,
             ),
             TextSpan(
-              text:
-              " וְכִסְאוֹ לָאָרֶץ מִגַּרְתָּה",
+              text: " וְכִסְאוֹ לָאָרֶץ מִגַּרְתָּה",
               style: textStyleSimpleText,
             ),
             TextSpan(
@@ -6397,7 +6334,7 @@ class mainTextWidget {
           children: <TextSpan>[
             TextSpan(
               text:
-              "הִקְצַרְתָּ יְמֵי עֲלוּמָיו הֶעֱטִיתָ עָלָיו בּוּשָׁה סֶלָה",
+                  "הִקְצַרְתָּ יְמֵי עֲלוּמָיו הֶעֱטִיתָ עָלָיו בּוּשָׁה סֶלָה",
               style: textStyleSimpleText,
             ),
             TextSpan(
@@ -6424,7 +6361,7 @@ class mainTextWidget {
           children: <TextSpan>[
             TextSpan(
               text:
-              "עַד מָה יְהוָה תִּסָּתֵר לָנֶצַח תִּבְעַר כְּמוֹ אֵשׁ חֲמָתֶךָ",
+                  "עַד מָה יְהוָה תִּסָּתֵר לָנֶצַח תִּבְעַר כְּמוֹ אֵשׁ חֲמָתֶךָ",
               style: textStyleSimpleText,
             ),
             TextSpan(
@@ -6451,7 +6388,7 @@ class mainTextWidget {
           children: <TextSpan>[
             TextSpan(
               text:
-              "זְכָר אֲנִי מֶה חָלֶד עַל מַה שָּׁוְא בָּרָאתָ כָל בְּנֵי אָדָם",
+                  "זְכָר אֲנִי מֶה חָלֶד עַל מַה שָּׁוְא בָּרָאתָ כָל בְּנֵי אָדָם",
               style: textStyleSimpleText,
             ),
             TextSpan(
@@ -6478,7 +6415,7 @@ class mainTextWidget {
           children: <TextSpan>[
             TextSpan(
               text:
-              "מִי גֶבֶר יִחְיֶה וְלֹא יִרְאֶה מָּוֶת יְמַלֵּט נַפְשׁוֹ מִיַּד שְׁאוֹל סֶלָה",
+                  "מִי גֶבֶר יִחְיֶה וְלֹא יִרְאֶה מָּוֶת יְמַלֵּט נַפְשׁוֹ מִיַּד שְׁאוֹל סֶלָה",
               style: textStyleSimpleText,
             ),
             TextSpan(
@@ -6505,7 +6442,7 @@ class mainTextWidget {
           children: <TextSpan>[
             TextSpan(
               text:
-              "אַיֵּה חֲסָדֶיךָ הָרִאשֹׁנִים אֲדֹנָי נִשְׁבַּעְתָּ לְדָוִד בֶּאֱמוּנָתֶךָ",
+                  "אַיֵּה חֲסָדֶיךָ הָרִאשֹׁנִים אֲדֹנָי נִשְׁבַּעְתָּ לְדָוִד בֶּאֱמוּנָתֶךָ",
               style: textStyleSimpleText,
             ),
             TextSpan(
@@ -6532,7 +6469,7 @@ class mainTextWidget {
           children: <TextSpan>[
             TextSpan(
               text:
-              "זְכֹר אֲדֹנָי חֶרְפַּת עֲבָדֶיךָ שְׂאֵתִי בְחֵיקִי כָּל רַבִּים עַמִּים",
+                  "זְכֹר אֲדֹנָי חֶרְפַּת עֲבָדֶיךָ שְׂאֵתִי בְחֵיקִי כָּל רַבִּים עַמִּים",
               style: textStyleSimpleText,
             ),
             TextSpan(
@@ -6559,7 +6496,7 @@ class mainTextWidget {
           children: <TextSpan>[
             TextSpan(
               text:
-              "אֲשֶׁר חֵרְפוּ אוֹיְבֶיךָ יְהוָה אֲשֶׁר חֵרְפוּ עִקְּבוֹת מְשִׁיחֶךָ",
+                  "אֲשֶׁר חֵרְפוּ אוֹיְבֶיךָ יְהוָה אֲשֶׁר חֵרְפוּ עִקְּבוֹת מְשִׁיחֶךָ",
               style: textStyleSimpleText,
             ),
             TextSpan(
@@ -6585,8 +6522,7 @@ class mainTextWidget {
         textSpan: TextSpan(
           children: <TextSpan>[
             TextSpan(
-              text:
-              "בָּרוּךְ יְהוָה לְעוֹלָם אָמֵן וְאָמֵן",
+              text: "בָּרוּךְ יְהוָה לְעוֹלָם אָמֵן וְאָמֵן",
               style: textStyleSimpleText,
             ),
             TextSpan(
@@ -6596,9 +6532,6 @@ class mainTextWidget {
           ],
         ),
       ),
-
-
-
 
       SizedBox(height: longSpace),
 
@@ -6633,7 +6566,7 @@ class mainTextWidget {
           children: <TextSpan>[
             TextSpan(
               text:
-              "לַמְנַצֵּחַ לְדָוִד מִזְמוֹר אֱלֹהֵי תְהִלָּתִי אַל תֶּחֱרַשׁ",
+                  "לַמְנַצֵּחַ לְדָוִד מִזְמוֹר אֱלֹהֵי תְהִלָּתִי אַל תֶּחֱרַשׁ",
               style: textStyleSimpleText,
             ),
             TextSpan(
@@ -6660,7 +6593,7 @@ class mainTextWidget {
           children: <TextSpan>[
             TextSpan(
               text:
-              "כִּי פִי רָשָׁע וּפִי מִרְמָה עָלַי פָּתָחוּ דִּבְּרוּ אִתִּי לְשׁוֹן שָׁקֶר",
+                  "כִּי פִי רָשָׁע וּפִי מִרְמָה עָלַי פָּתָחוּ דִּבְּרוּ אִתִּי לְשׁוֹן שָׁקֶר",
               style: textStyleSimpleText,
             ),
             TextSpan(
@@ -6686,8 +6619,7 @@ class mainTextWidget {
         textSpan: TextSpan(
           children: <TextSpan>[
             TextSpan(
-              text:
-              "וְדִבְרֵי שִׂנְאָה סְבָבוּנִי וַיִּלָּחֲמוּנִי חִנָּם",
+              text: "וְדִבְרֵי שִׂנְאָה סְבָבוּנִי וַיִּלָּחֲמוּנִי חִנָּם",
               style: textStyleSimpleText,
             ),
             TextSpan(
@@ -6713,8 +6645,7 @@ class mainTextWidget {
         textSpan: TextSpan(
           children: <TextSpan>[
             TextSpan(
-              text:
-              "תַּחַת אַהֲבָתִי יִשְׂטְנוּנִי וַאֲנִי תְפִלָּה",
+              text: "תַּחַת אַהֲבָתִי יִשְׂטְנוּנִי וַאֲנִי תְפִלָּה",
               style: textStyleSimpleText,
             ),
             TextSpan(
@@ -6741,7 +6672,7 @@ class mainTextWidget {
           children: <TextSpan>[
             TextSpan(
               text:
-              "וַיָּשִׂימוּ עָלַי רָעָה תַּחַת טוֹבָה וְשִׂנְאָה תַּחַת אַהֲבָתִי",
+                  "וַיָּשִׂימוּ עָלַי רָעָה תַּחַת טוֹבָה וְשִׂנְאָה תַּחַת אַהֲבָתִי",
               style: textStyleSimpleText,
             ),
             TextSpan(
@@ -6767,8 +6698,7 @@ class mainTextWidget {
         textSpan: TextSpan(
           children: <TextSpan>[
             TextSpan(
-              text:
-              "הַפְקֵד עָלָיו רָשָׁע וְשָׂטָן יַעֲמֹד עַל יְמִינוֹ",
+              text: "הַפְקֵד עָלָיו רָשָׁע וְשָׂטָן יַעֲמֹד עַל יְמִינוֹ",
               style: textStyleSimpleText,
             ),
             TextSpan(
@@ -6795,7 +6725,7 @@ class mainTextWidget {
           children: <TextSpan>[
             TextSpan(
               text:
-              "בְּהִשָּׁפְטוֹ יֵצֵא רָשָׁע וּתְפִלָּתוֹ תִּהְיֶה לַחֲטָאָה",
+                  "בְּהִשָּׁפְטוֹ יֵצֵא רָשָׁע וּתְפִלָּתוֹ תִּהְיֶה לַחֲטָאָה",
               style: textStyleSimpleText,
             ),
             TextSpan(
@@ -6821,8 +6751,7 @@ class mainTextWidget {
         textSpan: TextSpan(
           children: <TextSpan>[
             TextSpan(
-              text:
-              "יִהְיוּ יָמָיו מְעַטִּים פְּקֻדָּתוֹ יִקַּח אַחֵר",
+              text: "יִהְיוּ יָמָיו מְעַטִּים פְּקֻדָּתוֹ יִקַּח אַחֵר",
               style: textStyleSimpleText,
             ),
             TextSpan(
@@ -6848,8 +6777,7 @@ class mainTextWidget {
         textSpan: TextSpan(
           children: <TextSpan>[
             TextSpan(
-              text:
-              "יִהְיוּ בָנָיו יְתוֹמִים וְאִשְׁתּוֹ אַלְמָנָה",
+              text: "יִהְיוּ בָנָיו יְתוֹמִים וְאִשְׁתּוֹ אַלְמָנָה",
               style: textStyleSimpleText,
             ),
             TextSpan(
@@ -6876,12 +6804,11 @@ class mainTextWidget {
           children: <TextSpan>[
             TextSpan(
               text:
-              "וְנוֹעַ יָנוּעוּ בָנָיו וְשִׁאֵלוּ וְדָרְשׁוּ מֵחָרְבוֹתֵיהֶם ",
+                  "וְנוֹעַ יָנוּעוּ בָנָיו וְשִׁאֵלוּ וְדָרְשׁוּ מֵחָרְבוֹתֵיהֶם ",
               style: textStyleSimpleText,
             ),
             TextSpan(
-              text:
-              "(צריך לקרוא - מֵחוֹרְבוֹתֵיהֶם)",
+              text: "(צריך לקרוא - מֵחוֹרְבוֹתֵיהֶם)",
               style: textStyleSimpleText_pasokNotes,
             ),
             TextSpan(
@@ -6908,7 +6835,7 @@ class mainTextWidget {
           children: <TextSpan>[
             TextSpan(
               text:
-              "יְנַקֵּשׁ נוֹשֶׁה לְכָל אֲשֶׁר לוֹ וְיָבֹזּוּ זָרִים יְגִיעוֹ",
+                  "יְנַקֵּשׁ נוֹשֶׁה לְכָל אֲשֶׁר לוֹ וְיָבֹזּוּ זָרִים יְגִיעוֹ",
               style: textStyleSimpleText,
             ),
             TextSpan(
@@ -6934,8 +6861,7 @@ class mainTextWidget {
         textSpan: TextSpan(
           children: <TextSpan>[
             TextSpan(
-              text:
-              "אַל יְהִי לוֹ מֹשֵׁךְ חָסֶד וְאַל יְהִי חוֹנֵן לִיתוֹמָיו",
+              text: "אַל יְהִי לוֹ מֹשֵׁךְ חָסֶד וְאַל יְהִי חוֹנֵן לִיתוֹמָיו",
               style: textStyleSimpleText,
             ),
             TextSpan(
@@ -6961,8 +6887,7 @@ class mainTextWidget {
         textSpan: TextSpan(
           children: <TextSpan>[
             TextSpan(
-              text:
-              "יְהִי אַחֲרִיתוֹ לְהַכְרִית בְּדוֹר אַחֵר יִמַּח שְׁמָם",
+              text: "יְהִי אַחֲרִיתוֹ לְהַכְרִית בְּדוֹר אַחֵר יִמַּח שְׁמָם",
               style: textStyleSimpleText,
             ),
             TextSpan(
@@ -6989,7 +6914,7 @@ class mainTextWidget {
           children: <TextSpan>[
             TextSpan(
               text:
-              "יִזָּכֵר עֲוֹן אֲבֹתָיו אֶל יְהוָה וְחַטַּאת אִמּוֹ אַל תִּמָּח",
+                  "יִזָּכֵר עֲוֹן אֲבֹתָיו אֶל יְהוָה וְחַטַּאת אִמּוֹ אַל תִּמָּח",
               style: textStyleSimpleText,
             ),
             TextSpan(
@@ -7015,8 +6940,7 @@ class mainTextWidget {
         textSpan: TextSpan(
           children: <TextSpan>[
             TextSpan(
-              text:
-              "יִהְיוּ נֶגֶד יְהוָה תָּמִיד וְיַכְרֵת מֵאֶרֶץ זִכְרָם",
+              text: "יִהְיוּ נֶגֶד יְהוָה תָּמִיד וְיַכְרֵת מֵאֶרֶץ זִכְרָם",
               style: textStyleSimpleText,
             ),
             TextSpan(
@@ -7043,7 +6967,7 @@ class mainTextWidget {
           children: <TextSpan>[
             TextSpan(
               text:
-              "יַעַן אֲשֶׁר לֹא זָכַר עֲשׂוֹת חָסֶד וַיִּרְדֹּף אִישׁ עָנִי וְאֶבְיוֹן וְנִכְאֵה לֵבָב לְמוֹתֵת",
+                  "יַעַן אֲשֶׁר לֹא זָכַר עֲשׂוֹת חָסֶד וַיִּרְדֹּף אִישׁ עָנִי וְאֶבְיוֹן וְנִכְאֵה לֵבָב לְמוֹתֵת",
               style: textStyleSimpleText,
             ),
             TextSpan(
@@ -7070,7 +6994,7 @@ class mainTextWidget {
           children: <TextSpan>[
             TextSpan(
               text:
-              "וַיֶּאֱהַב קְלָלָה וַתְּבוֹאֵהוּ וְלֹא חָפֵץ בִּבְרָכָה וַתִּרְחַק מִמֶּנּוּ",
+                  "וַיֶּאֱהַב קְלָלָה וַתְּבוֹאֵהוּ וְלֹא חָפֵץ בִּבְרָכָה וַתִּרְחַק מִמֶּנּוּ",
               style: textStyleSimpleText,
             ),
             TextSpan(
@@ -7097,7 +7021,7 @@ class mainTextWidget {
           children: <TextSpan>[
             TextSpan(
               text:
-              "וַיִּלְבַּשׁ קְלָלָה כְּמַדּוֹ וַתָּבֹא כַמַּיִם בְּקִרְבּוֹ וְכַשֶּׁמֶן בְּעַצְמוֹתָיו",
+                  "וַיִּלְבַּשׁ קְלָלָה כְּמַדּוֹ וַתָּבֹא כַמַּיִם בְּקִרְבּוֹ וְכַשֶּׁמֶן בְּעַצְמוֹתָיו",
               style: textStyleSimpleText,
             ),
             TextSpan(
@@ -7123,8 +7047,7 @@ class mainTextWidget {
         textSpan: TextSpan(
           children: <TextSpan>[
             TextSpan(
-              text:
-              "תְּהִי לוֹ כְּבֶגֶד יַעְטֶה וּלְמֵזַח תָּמִיד יַחְגְּרֶה",
+              text: "תְּהִי לוֹ כְּבֶגֶד יַעְטֶה וּלְמֵזַח תָּמִיד יַחְגְּרֶה",
               style: textStyleSimpleText,
             ),
             TextSpan(
@@ -7151,7 +7074,7 @@ class mainTextWidget {
           children: <TextSpan>[
             TextSpan(
               text:
-              "זֹאת פְּעֻלַּת שֹׂטְנַי מֵאֵת יְהוָה וְהַדֹּבְרִים רָע עַל נַפְשִׁי",
+                  "זֹאת פְּעֻלַּת שֹׂטְנַי מֵאֵת יְהוָה וְהַדֹּבְרִים רָע עַל נַפְשִׁי",
               style: textStyleSimpleText,
             ),
             TextSpan(
@@ -7177,18 +7100,16 @@ class mainTextWidget {
         textSpan: TextSpan(
           children: <TextSpan>[
             TextSpan(
-              text:
-              "וְאַתָּה אֱלֹהִים ",
+              text: "וְאַתָּה אֱלֹהִים ",
               style: textStyleSimpleText,
             ),
             TextSpan(
-              text:
-              "(כתיב: יְהוִה)",
+              text: "(כתיב: יְהוִה)",
               style: textStyleSimpleText_pasokNotes,
             ),
             TextSpan(
               text:
-              " אֲדֹנָי עֲשֵׂה אִתִּי לְמַעַן שְׁמֶךָ כִּי טוֹב חַסְדְּךָ הַצִּילֵנִי",
+                  " אֲדֹנָי עֲשֵׂה אִתִּי לְמַעַן שְׁמֶךָ כִּי טוֹב חַסְדְּךָ הַצִּילֵנִי",
               style: textStyleSimpleText,
             ),
             TextSpan(
@@ -7214,8 +7135,7 @@ class mainTextWidget {
         textSpan: TextSpan(
           children: <TextSpan>[
             TextSpan(
-              text:
-              "כִּי עָנִי וְאֶבְיוֹן אָנֹכִי וְלִבִּי חָלַל בְּקִרְבִּי",
+              text: "כִּי עָנִי וְאֶבְיוֹן אָנֹכִי וְלִבִּי חָלַל בְּקִרְבִּי",
               style: textStyleSimpleText,
             ),
             TextSpan(
@@ -7241,8 +7161,7 @@ class mainTextWidget {
         textSpan: TextSpan(
           children: <TextSpan>[
             TextSpan(
-              text:
-              "כְּצֵל כִּנְטוֹתוֹ נֶהֱלָכְתִּי נִנְעַרְתִּי כָּאַרְבֶּה",
+              text: "כְּצֵל כִּנְטוֹתוֹ נֶהֱלָכְתִּי נִנְעַרְתִּי כָּאַרְבֶּה",
               style: textStyleSimpleText,
             ),
             TextSpan(
@@ -7268,8 +7187,7 @@ class mainTextWidget {
         textSpan: TextSpan(
           children: <TextSpan>[
             TextSpan(
-              text:
-              "בִּרְכַּי כָּשְׁלוּ מִצּוֹם וּבְשָׂרִי כָּחַשׁ מִשָּׁמֶן",
+              text: "בִּרְכַּי כָּשְׁלוּ מִצּוֹם וּבְשָׂרִי כָּחַשׁ מִשָּׁמֶן",
               style: textStyleSimpleText,
             ),
             TextSpan(
@@ -7296,7 +7214,7 @@ class mainTextWidget {
           children: <TextSpan>[
             TextSpan(
               text:
-              "וַאֲנִי הָיִיתִי חֶרְפָּה לָהֶם יִרְאוּנִי יְנִיעוּן רֹאשָׁם",
+                  "וַאֲנִי הָיִיתִי חֶרְפָּה לָהֶם יִרְאוּנִי יְנִיעוּן רֹאשָׁם",
               style: textStyleSimpleText,
             ),
             TextSpan(
@@ -7322,8 +7240,7 @@ class mainTextWidget {
         textSpan: TextSpan(
           children: <TextSpan>[
             TextSpan(
-              text:
-              "עָזְרֵנִי יְהוָה אֱלֹהָי הוֹשִׁיעֵנִי כְחַסְדֶּךָ",
+              text: "עָזְרֵנִי יְהוָה אֱלֹהָי הוֹשִׁיעֵנִי כְחַסְדֶּךָ",
               style: textStyleSimpleText,
             ),
             TextSpan(
@@ -7349,8 +7266,7 @@ class mainTextWidget {
         textSpan: TextSpan(
           children: <TextSpan>[
             TextSpan(
-              text:
-              "וְיֵדְעוּ כִּי יָדְךָ זֹּאת אַתָּה יְהוָה עֲשִׂיתָהּ",
+              text: "וְיֵדְעוּ כִּי יָדְךָ זֹּאת אַתָּה יְהוָה עֲשִׂיתָהּ",
               style: textStyleSimpleText,
             ),
             TextSpan(
@@ -7377,7 +7293,7 @@ class mainTextWidget {
           children: <TextSpan>[
             TextSpan(
               text:
-              "יְקַלְלוּ הֵמָּה וְאַתָּה תְבָרֵךְ קָמוּ וַיֵּבֹשׁוּ וְעַבְדְּךָ יִשְׂמָח",
+                  "יְקַלְלוּ הֵמָּה וְאַתָּה תְבָרֵךְ קָמוּ וַיֵּבֹשׁוּ וְעַבְדְּךָ יִשְׂמָח",
               style: textStyleSimpleText,
             ),
             TextSpan(
@@ -7404,7 +7320,7 @@ class mainTextWidget {
           children: <TextSpan>[
             TextSpan(
               text:
-              "יִלְבְּשׁוּ שׂוֹטְנַי כְּלִמָּה וְיַעֲטוּ כַמְעִיל בָּשְׁתָּם",
+                  "יִלְבְּשׁוּ שׂוֹטְנַי כְּלִמָּה וְיַעֲטוּ כַמְעִיל בָּשְׁתָּם",
               style: textStyleSimpleText,
             ),
             TextSpan(
@@ -7430,8 +7346,7 @@ class mainTextWidget {
         textSpan: TextSpan(
           children: <TextSpan>[
             TextSpan(
-              text:
-              "אוֹדֶה יְהוָה מְאֹד בְּפִי וּבְתוֹךְ רַבִּים אֲהַלְלֶנּוּ",
+              text: "אוֹדֶה יְהוָה מְאֹד בְּפִי וּבְתוֹךְ רַבִּים אֲהַלְלֶנּוּ",
               style: textStyleSimpleText,
             ),
             TextSpan(
@@ -7458,7 +7373,7 @@ class mainTextWidget {
           children: <TextSpan>[
             TextSpan(
               text:
-              "כִּי יַעֲמֹד לִימִין אֶבְיוֹן לְהוֹשִׁיעַ מִשֹּׁפְטֵי נַפְשׁוֹ",
+                  "כִּי יַעֲמֹד לִימִין אֶבְיוֹן לְהוֹשִׁיעַ מִשֹּׁפְטֵי נַפְשׁוֹ",
               style: textStyleSimpleText,
             ),
             TextSpan(
@@ -7478,7 +7393,7 @@ class mainTextWidget {
           children: <TextSpan>[
             TextSpan(
               text:
-              "מִי יִתֵּן מִצִּיּוֹן יְשׁוּעַת יִשְׂרָאֵל בְּשׁוּב יְהֹוָה שְׁבוּת עַמּוֹ, יָגֵל יַעֲקֹב "
+                  "מִי יִתֵּן מִצִּיּוֹן יְשׁוּעַת יִשְׂרָאֵל בְּשׁוּב יְהֹוָה שְׁבוּת עַמּוֹ, יָגֵל יַעֲקֹב "
                   "יִשְׂמַח יִשְׂרָאֵל: וּתְשׁוּעַת צַדִּיקִים מֵיְהֹוָה, מָעוּזָּם בְּעֵת צָרָה: וַיַּעְזְרֵם יְהֹוָה וַיְפַלְּטֵם,"
                   " יְפַלְּטֵם מֵרְשָׁעִים וְיוֹשִיעֵם כִּי חָסוּ בוֹ: חִזְקוּ וְיַאֲמֵץ לְבַבְכֶם כָּל הַמְיַחֲלִים לַיְהֹוָה:",
               style: textStyleSimpleText,
@@ -7487,14 +7402,16 @@ class mainTextWidget {
         ),
       ),
 
-
-
-
-
-
-
       SizedBox(height: longSpace),
 
+      //
+      //
+      MainPageBigImage(context: context),
+      //
+      //
+      //
+
+      SizedBox(height: longSpace),
     ]);
   }
 }

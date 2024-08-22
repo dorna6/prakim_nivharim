@@ -34,8 +34,8 @@ import 'package:provider/provider.dart';
 
 // my imports
 import 'theme_widgets.dart';
-import 'main_page_widgets.dart';
-import 'main_text_widget.dart';
+import 'main_page_body.dart';
+
 
 //
 //
@@ -58,6 +58,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
     return MaterialApp(
       theme: Provider.of<ThemeProvider>(context).themeDataStyle,
       home: MainPage(),
@@ -78,7 +79,7 @@ class MainPage extends StatelessWidget {
     // main page widgets
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.background,
-      body: MainPageBody.body(
+      body: MainPageBody(
         context: context,
         isDarkMode: isDarkMode,
         themeProvider: themeProvider,
