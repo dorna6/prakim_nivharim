@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 
 // my import
 import 'custom_text_widget.dart';
-import 'main_image_widgets.dart';
 
 //
 //
@@ -40,16 +39,16 @@ class _mainTextWidget extends State<mainTextWidget>
     super.initState();
 
     _controller1 = AnimationController(
-      duration: const Duration(seconds: 0, milliseconds: 0),
+      duration: const Duration(seconds: 1, milliseconds: 0),
       vsync: this,
     );
 
     _controller2 = AnimationController(
-      duration: const Duration(seconds: 0, milliseconds: 0),
+      duration: const Duration(seconds: 1, milliseconds: 0),
       vsync: this,
     );
     _controller3 = AnimationController(
-      duration: const Duration(seconds: 0, milliseconds: 0),
+      duration: const Duration(seconds: 1, milliseconds: 0),
       vsync: this,
     );
 
@@ -57,13 +56,13 @@ class _mainTextWidget extends State<mainTextWidget>
     _animation2 = Tween(begin: 0.0, end: 1.0).animate(_controller2);
     _animation3 = Tween(begin: 0.0, end: 1.0).animate(_controller3);
 
-    Future.delayed(const Duration(milliseconds: 000), () {
+    Future.delayed(const Duration(milliseconds: 600), () {
       _controller1.forward();
     });
-    Future.delayed(const Duration(milliseconds: 000), () {
+    Future.delayed(const Duration(milliseconds: 800), () {
       _controller2.forward();
     });
-    Future.delayed(const Duration(milliseconds: 0000), () {
+    Future.delayed(const Duration(milliseconds: 1000), () {
       _controller3.forward();
     });
   }
@@ -136,89 +135,81 @@ class _mainTextWidget extends State<mainTextWidget>
 
     return Column(children: [
       SizedBox(height: shortSpace),
-
-      // CustomRichText(
-      //   textAlign: TextAlign.center,
-      //   alignment: Alignment.center,
-      //   textSpan: TextSpan(
-      //     children: <TextSpan>[
-      //       TextSpan(
-      //         text: "פרקים נבחרים",
-      //         style: textStyleSimpleTextHeadline.copyWith(
-      //           fontSize: 50,
-      //           fontWeight: FontWeight.w400,
-      //         ),
-      //       ),
-      //     ],
-      //   ),
-      // ),
-      SizedBox(height: shortSpace),
-
-      CustomRichText(
-        textAlign: TextAlign.center,
-        alignment: Alignment.center,
-        textSpan: TextSpan(
-          children: <TextSpan>[
-            TextSpan(
-              text: "פרקים נבחרים",
-              style: textStyleSimpleTextHeadline,
-            ),
-          ],
-        ),
-      ),
-
-      SizedBox(height: shortSpace),
-      // SizedBox(height: shortSpace),
-      CustomRichText(
-        textAlign: TextAlign.center,
-        textDirection: TextDirection.rtl,
-        textSpan: TextSpan(
-          children: <TextSpan>[
-            TextSpan(
-              text:
-                  'שגילה מו"ר הצדיק, הבעטליר השביעי, הרב אליעזר ברלנד שליט"א.',
-              style: textStyleSimpleText,
-            ),
-          ],
+      FadeTransition(
+        opacity: _animation1,
+        child: CustomRichText(
+          textAlign: TextAlign.center,
+          alignment: Alignment.center,
+          textSpan: TextSpan(
+            children: <TextSpan>[
+              TextSpan(
+                text: "פרקים נבחרים",
+                style: textStyleSimpleTextHeadline.copyWith(
+                  fontSize: 50,
+                  fontWeight: FontWeight.w400,
+                ),
+              ),
+            ],
+          ),
         ),
       ),
       SizedBox(height: shortSpace),
-      CustomRichText(
-        textAlign: TextAlign.justify,
-        textSpan: TextSpan(
-          children: <TextSpan>[
-            TextSpan(
-              text:
-                  'הֲרֵינִי מְקַשֵׁר עַצְמִי בַּאֲמִירַת הָעֲשָׂרָה פְּרָקִים נִבְחָרִים שֶׁגִּלָּה מוֹרֵנוּ וְרַבֵּינוּ רַבִּי אֱלִיעֶזֶר בֵּרְלָנָד שְׁלִיטָ"א,'
-                  ' לְכָל הַצַּדִּיקִים הָאֲמִתִּיִּים שֶׁבְּדוֹרֵנוּ, וּלְכָל הַצַּדִּיקִים הָאֲמִתִּים שׁוֹכְנֵי עָפָר,'
-                  ' קְדוֹשִׁים אָשֵׁר בָּאָרֶץ הֵמָּה, וּבִפְרָט לְרַבֵּנוּ הַקָּדוֹשׁ, צַדִּיק יְסוֹד עוֹלָם, נַחַל נוֹבֵעַ'
-                  ' מְקוֹר חָכְמָה, רַבֵּנוּ נַחְמָן בֶּן פֵיגֶא. זְכוּתָם יָגֵן עָלֵינוּ וְעַל כָּל יִשְׂרָאֵל אָמֵן.',
-              style: textStyleSimpleText,
-            ),
-          ],
+      FadeTransition(
+        opacity: _animation2,
+        child: CustomRichText(
+          textAlign: TextAlign.center,
+          textDirection: TextDirection.rtl,
+          textSpan: TextSpan(
+            children: <TextSpan>[
+              TextSpan(
+                text:
+                    'שגילה מו"ר הצדיק, הבעטליר השביעי, הרב אליעזר ברלנד שליט"א.',
+                style: textStyleSimpleText,
+              ),
+            ],
+          ),
         ),
       ),
       SizedBox(height: shortSpace),
-      CustomRichText(
-        textAlign: TextAlign.justify,
-        textSpan: TextSpan(
-          children: <TextSpan>[
-            TextSpan(
-              text:
-                  "לְכוּ נְרַנְּנָה לַיהֹוָה, נָרִיעָה לְצוּר יִשְׁעֵנוּ: נְקַדְּמָה"
-                  " פָּנָיו בְּתוֹדָה, בִּזְמִרוֹת נָרִיעַ לוֹ: כִּי אֵל גָּדוֹל יְהֹוָה, וּמֶלֶךְ גָּדוֹל"
-                  " עַל כָּל אֱלֹהִים: הֲרֵינִי מְזַמֵּן אֶת פִּי לְהוֹדוֹת וּלְהַלֵּל וּלְשַׁבֵּחַ אֶת"
-                  " בּוֹרְאִי לְשֵׁם יִחוּד קֻדְשָׁא בְּרִיךְ הוּא וּשְׁכִינְתֵּה, בִּדְחִילוּ וּרְחִימוּ,"
-                  " וּרְחִימוּ וּדְחִילוּ, עַל יְדֵי הַהוּא טָמִיר, וְנֶעְלָם בְּשֵׁם כָּל יִשְׂרָאֵל.",
-              style: textStyleSimpleText,
-            ),
-          ],
+      FadeTransition(
+        opacity: _animation3,
+        child: CustomRichText(
+          textAlign: TextAlign.justify,
+          textSpan: TextSpan(
+            children: <TextSpan>[
+              TextSpan(
+                text:
+                    'הֲרֵינִי מְקַשֵׁר עַצְמִי בַּאֲמִירַת הָעֲשָׂרָה פְּרָקִים נִבְחָרִים שֶׁגִּלָּה מוֹרֵנוּ וְרַבֵּינוּ רַבִּי אֱלִיעֶזֶר בֵּרְלָנָד שְׁלִיטָ"א,'
+                    ' לְכָל הַצַּדִּיקִים הָאֲמִתִּיִּים שֶׁבְּדוֹרֵנוּ, וּלְכָל הַצַּדִּיקִים הָאֲמִתִּים שׁוֹכְנֵי עָפָר,'
+                    ' קְדוֹשִׁים אָשֵׁר בָּאָרֶץ הֵמָּה, וּבִפְרָט לְרַבֵּנוּ הַקָּדוֹשׁ, צַדִּיק יְסוֹד עוֹלָם, נַחַל נוֹבֵעַ'
+                    ' מְקוֹר חָכְמָה, רַבֵּנוּ נַחְמָן בֶּן פֵיגֶא. זְכוּתָם יָגֵן עָלֵינוּ וְעַל כָּל יִשְׂרָאֵל אָמֵן.',
+                style: textStyleSimpleText,
+              ),
+            ],
+          ),
+        ),
+      ),
+      SizedBox(height: shortSpace),
+      FadeTransition(
+        opacity: _animation1,
+        child: CustomRichText(
+          textAlign: TextAlign.justify,
+          textSpan: TextSpan(
+            children: <TextSpan>[
+              TextSpan(
+                text:
+                    "לְכוּ נְרַנְּנָה לַיהֹוָה, נָרִיעָה לְצוּר יִשְׁעֵנוּ: נְקַדְּמָה"
+                    " פָּנָיו בְּתוֹדָה, בִּזְמִרוֹת נָרִיעַ לוֹ: כִּי אֵל גָּדוֹל יְהֹוָה, וּמֶלֶךְ גָּדוֹל"
+                    " עַל כָּל אֱלֹהִים: הֲרֵינִי מְזַמֵּן אֶת פִּי לְהוֹדוֹת וּלְהַלֵּל וּלְשַׁבֵּחַ אֶת"
+                    " בּוֹרְאִי לְשֵׁם יִחוּד קֻדְשָׁא בְּרִיךְ הוּא וּשְׁכִינְתֵּה, בִּדְחִילוּ וּרְחִימוּ,"
+                    " וּרְחִימוּ וּדְחִילוּ, עַל יְדֵי הַהוּא טָמִיר, וְנֶעְלָם בְּשֵׁם כָּל יִשְׂרָאֵל.",
+                style: textStyleSimpleText,
+              ),
+            ],
+          ),
         ),
       ),
       SizedBox(height: longSpace),
-
-      //////////////////////////////////////////////////
-
       CustomRichText(
         textAlign: TextAlign.center,
         alignment: Alignment.center,
@@ -232,7 +223,6 @@ class _mainTextWidget extends State<mainTextWidget>
         ),
       ),
       SizedBox(height: shortSpace),
-
       CustomRichTextPasok(
         textSpanHead: TextSpan(
           children: <TextSpan>[
@@ -259,7 +249,6 @@ class _mainTextWidget extends State<mainTextWidget>
           ],
         ),
       ),
-
       CustomRichTextPasok(
         textSpanHead: TextSpan(
           children: <TextSpan>[
@@ -287,7 +276,6 @@ class _mainTextWidget extends State<mainTextWidget>
           ],
         ),
       ),
-
       CustomRichTextPasok(
         textSpanHead: TextSpan(
           children: <TextSpan>[
@@ -315,7 +303,6 @@ class _mainTextWidget extends State<mainTextWidget>
           ],
         ),
       ),
-
       CustomRichTextPasok(
         textSpanHead: TextSpan(
           children: <TextSpan>[
@@ -343,7 +330,6 @@ class _mainTextWidget extends State<mainTextWidget>
           ],
         ),
       ),
-
       CustomRichTextPasok(
         textSpanHead: TextSpan(
           children: <TextSpan>[
@@ -371,7 +357,6 @@ class _mainTextWidget extends State<mainTextWidget>
           ],
         ),
       ),
-
       CustomRichTextPasok(
         textSpanHead: TextSpan(
           children: <TextSpan>[
@@ -399,7 +384,6 @@ class _mainTextWidget extends State<mainTextWidget>
           ],
         ),
       ),
-
       CustomRichTextPasok(
         textSpanHead: TextSpan(
           children: <TextSpan>[
@@ -427,7 +411,6 @@ class _mainTextWidget extends State<mainTextWidget>
           ],
         ),
       ),
-
       CustomRichTextPasok(
         textSpanHead: TextSpan(
           children: <TextSpan>[
@@ -455,7 +438,6 @@ class _mainTextWidget extends State<mainTextWidget>
           ],
         ),
       ),
-
       CustomRichTextPasok(
         textSpanHead: TextSpan(
           children: <TextSpan>[
@@ -483,7 +465,6 @@ class _mainTextWidget extends State<mainTextWidget>
           ],
         ),
       ),
-
       CustomRichTextPasok(
         textSpanHead: TextSpan(
           children: <TextSpan>[
@@ -511,7 +492,6 @@ class _mainTextWidget extends State<mainTextWidget>
           ],
         ),
       ),
-
       CustomRichTextPasok(
         textSpanHead: TextSpan(
           children: <TextSpan>[
@@ -917,9 +897,7 @@ class _mainTextWidget extends State<mainTextWidget>
           ],
         ),
       ),
-
       SizedBox(height: longSpace),
-
       CustomRichText(
         textAlign: TextAlign.center,
         alignment: Alignment.center,
@@ -933,7 +911,6 @@ class _mainTextWidget extends State<mainTextWidget>
         ),
       ),
       SizedBox(height: shortSpace),
-
       CustomRichTextPasok(
         textSpanHead: TextSpan(
           children: <TextSpan>[
@@ -1695,9 +1672,7 @@ class _mainTextWidget extends State<mainTextWidget>
           ],
         ),
       ),
-
       SizedBox(height: longSpace),
-
       CustomRichText(
         textAlign: TextAlign.center,
         alignment: Alignment.center,
@@ -1711,7 +1686,6 @@ class _mainTextWidget extends State<mainTextWidget>
         ),
       ),
       SizedBox(height: shortSpace),
-
       CustomRichTextPasok(
         textSpanHead: TextSpan(
           children: <TextSpan>[
@@ -2056,9 +2030,7 @@ class _mainTextWidget extends State<mainTextWidget>
           ],
         ),
       ),
-
       SizedBox(height: longSpace),
-
       CustomRichText(
         textAlign: TextAlign.center,
         alignment: Alignment.center,
@@ -2072,7 +2044,6 @@ class _mainTextWidget extends State<mainTextWidget>
         ),
       ),
       SizedBox(height: shortSpace),
-
       CustomRichTextPasok(
         textSpanHead: TextSpan(
           children: <TextSpan>[
@@ -2458,9 +2429,7 @@ class _mainTextWidget extends State<mainTextWidget>
           ],
         ),
       ),
-
       SizedBox(height: longSpace),
-
       CustomRichText(
         textAlign: TextAlign.center,
         alignment: Alignment.center,
@@ -2474,7 +2443,6 @@ class _mainTextWidget extends State<mainTextWidget>
         ),
       ),
       SizedBox(height: shortSpace),
-
       CustomRichTextPasok(
         textSpanHead: TextSpan(
           children: <TextSpan>[
@@ -3467,9 +3435,7 @@ class _mainTextWidget extends State<mainTextWidget>
           ],
         ),
       ),
-
       SizedBox(height: longSpace),
-
       CustomRichText(
         textAlign: TextAlign.center,
         alignment: Alignment.center,
@@ -3483,7 +3449,6 @@ class _mainTextWidget extends State<mainTextWidget>
         ),
       ),
       SizedBox(height: shortSpace),
-
       CustomRichTextPasok(
         textSpanHead: TextSpan(
           children: <TextSpan>[
@@ -4031,9 +3996,7 @@ class _mainTextWidget extends State<mainTextWidget>
           ],
         ),
       ),
-
       SizedBox(height: longSpace),
-
       CustomRichText(
         textAlign: TextAlign.center,
         alignment: Alignment.center,
@@ -4047,7 +4010,6 @@ class _mainTextWidget extends State<mainTextWidget>
         ),
       ),
       SizedBox(height: shortSpace),
-
       CustomRichTextPasok(
         textSpanHead: TextSpan(
           children: <TextSpan>[
@@ -4557,9 +4519,7 @@ class _mainTextWidget extends State<mainTextWidget>
           ],
         ),
       ),
-
       SizedBox(height: longSpace),
-
       CustomRichText(
         textAlign: TextAlign.center,
         alignment: Alignment.center,
@@ -4573,7 +4533,6 @@ class _mainTextWidget extends State<mainTextWidget>
         ),
       ),
       SizedBox(height: shortSpace),
-
       CustomRichTextPasok(
         textSpanHead: TextSpan(
           children: <TextSpan>[
@@ -5081,9 +5040,7 @@ class _mainTextWidget extends State<mainTextWidget>
           ],
         ),
       ),
-
       SizedBox(height: longSpace),
-
       CustomRichText(
         textAlign: TextAlign.center,
         alignment: Alignment.center,
@@ -5097,7 +5054,6 @@ class _mainTextWidget extends State<mainTextWidget>
         ),
       ),
       SizedBox(height: shortSpace),
-
       CustomRichTextPasok(
         textSpanHead: TextSpan(
           children: <TextSpan>[
@@ -6533,9 +6489,7 @@ class _mainTextWidget extends State<mainTextWidget>
           ],
         ),
       ),
-
       SizedBox(height: longSpace),
-
       CustomRichText(
         textAlign: TextAlign.center,
         alignment: Alignment.center,
@@ -6549,7 +6503,6 @@ class _mainTextWidget extends State<mainTextWidget>
         ),
       ),
       SizedBox(height: shortSpace),
-
       CustomRichTextPasok(
         textSpanHead: TextSpan(
           children: <TextSpan>[
@@ -7384,9 +7337,7 @@ class _mainTextWidget extends State<mainTextWidget>
           ],
         ),
       ),
-
       SizedBox(height: shortSpace),
-
       SizedBox(height: shortSpace),
       CustomRichText(
         textAlign: TextAlign.justify,
@@ -7402,16 +7353,6 @@ class _mainTextWidget extends State<mainTextWidget>
           ],
         ),
       ),
-
-      SizedBox(height: longSpace),
-
-      //
-      //
-      MainPageBigImage(context: context),
-      //
-      //
-      //
-
       SizedBox(height: longSpace),
     ]);
   }

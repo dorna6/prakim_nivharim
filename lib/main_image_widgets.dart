@@ -64,35 +64,45 @@ class _MainPageBigImage extends State<MainPageBigImage>
     final TextStyle textStyleMainImg = TextStyle(
         fontSize: 28,
         fontFamily: 'DavidLibre',
-        fontWeight: FontWeight.w400,
-        color: Color(0xFFffffff));
+        fontWeight: FontWeight.w500,
+        shadows: [
+          Shadow(
+            offset: Offset(0.0, 0.0),
+            blurRadius: 15.0,
+            color: Color(0xffffffff).withOpacity(0.3),
+          ),
+        ],
+        color: Color(0xFFffffff).withOpacity(1),
+    );
 
     final TextStyle textStyleMainImg_sub = TextStyle(
         fontSize: 20,
         fontFamily: 'DavidLibre',
         fontWeight: FontWeight.w400,
-        color: Color(0xFFffffff));
+      color: Color(0xFFffffff).withOpacity(1),
+    );
 
     // define shadow variabels
     final BoxShadow boxShadowMainImg = BoxShadow(
         color: Theme.of(context).colorScheme.shadow,
-        spreadRadius: 1,
-        blurRadius: 4);
+        spreadRadius: 2,
+        blurRadius: 6);
 
     return Container(
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(20),
+        borderRadius: BorderRadius.circular(0),
         boxShadow: [boxShadowMainImg],
       ),
-      height: 300,
+      // height: 450,
       width: MediaQuery.of(context).size.width,
       alignment: Alignment.center,
       child: Stack(
         children: [
           Positioned.fill(
             child: ClipRRect(
-              borderRadius: BorderRadius.all(
-                Radius.circular(20.0),
+              borderRadius: BorderRadius.only(
+                bottomLeft: Radius.circular(0.0),
+                bottomRight: Radius.circular(0.0),
               ),
               child: Image.asset(mainImgPath[randomIndex_main_img],
                   fit: BoxFit.cover),
@@ -103,7 +113,7 @@ class _MainPageBigImage extends State<MainPageBigImage>
             children: [
               //
               Padding(
-                padding: EdgeInsets.fromLTRB(30, 0, 30, 15),
+                padding: EdgeInsets.fromLTRB(30, 70, 30, 15),
                 child: Align(
                   alignment: Alignment.center,
                   child: FadeTransition(
@@ -124,7 +134,7 @@ class _MainPageBigImage extends State<MainPageBigImage>
               FadeTransition(
                 opacity: _animation1,
                 child: Padding(
-                  padding: EdgeInsets.fromLTRB(15, 0, 15, 0),
+                  padding: EdgeInsets.fromLTRB(15, 0, 15, 30),
                   child: Align(
                     alignment: Alignment.center,
                     child: RichText(
@@ -172,15 +182,15 @@ const List<List<String>> mainImgText = [
     '(ספר המידות, הכנסת אורחים ג)'
   ],
   [
-    'גְּדוֹלָה הַכְנָסַת אוֹרְחִים מֵהַשְׁכָּמַת בֵּית- הַמִּדְרָשׁ וְהַקְבָּלַת פְּנֵי שְׁכִינָה.',
+    'גְּדוֹלָה הַכְנָסַת אוֹרְחִים מֵהַשְׁכָּמַת בֵּית הַמִּדְרָשׁ וְהַקְבָּלַת פְּנֵי שְׁכִינָה.',
     '(ספר המידות, הכנסת אורחים ו)'
   ],
   [
-    'עַל-יְדֵי אַהֲבַת הַשֵּׁם יִתְבָּרַךְ נִשְׁמָר הַנֶּפֶשׁ מִכָּל פְּגָעִים רָעִים.',
+    'עַל יְדֵי אַהֲבַת הַשֵּׁם יִתְבָּרַךְ נִשְׁמָר הַנֶּפֶשׁ מִכָּל פְּגָעִים רָעִים.',
     '(ספר המידות, אהבה ג)'
   ],
   [
-    'מִי שֶׁמִּתְפַּלֵּל עַל יִשְׂרָאֵל בִּמְסִירַת-נֶפֶשׁ, הַכֹּל אוֹהֲבִין אוֹתוֹ.',
+    'מִי שֶׁמִּתְפַּלֵּל עַל יִשְׂרָאֵל בִּמְסִירַת נֶפֶשׁ, הַכֹּל אוֹהֲבִין אוֹתוֹ.',
     '(ספר המידות, אהבה ה)'
   ],
   [
@@ -188,10 +198,10 @@ const List<List<String>> mainImgText = [
     '(ספר המידות, אהבה ז)'
   ],
   [
-    'עַל-יְדֵי אֲמִירַת הַלֵּל בְּקוֹל גָּדוֹל, זוֹכִים לְאַהֲבַת הַשֵּׁם יִתְבָּרַךְ.',
+    'עַל יְדֵי אֲמִירַת הַלֵּל בְּקוֹל גָּדוֹל, זוֹכִים לְאַהֲבַת הַשֵּׁם יִתְבָּרַךְ.',
     '(ספר המידות, אהבה ח)'
   ],
-  ['עַל-יְדֵי עֲנָוָה תִּזְכֶּה לֶאֱמוּנָה.', '(ספר המידות, אמונה ב)'],
+  ['עַל יְדֵי עֲנָוָה תִּזְכֶּה לֶאֱמוּנָה.', '(ספר המידות, אמונה ב)'],
   [
     'בִּרְאוֹתְךָ שִׁנּוּי מַעֲשֶׂה, אַל תֹּאמַר מִקְרֶה הוּא, אֶלָּא תַּאֲמִין כִּי זֶה הַשְׁגָּחַת הַשֵּׁם יִתְבָּרַךְ.',
     '(ספר המידות, אמונה ג)'
@@ -221,7 +231,7 @@ const List<List<String>> mainImgText = [
     '(ספר המידות, כעס א)'
   ],
   [
-    'הַקָּדוֹשׁ-בָּרוּךְ-הוּא אוֹהֵב לְמִי שֶׁאֵינוֹ כּוֹעֵס וּלְמִי שֶׁאֵינוֹ מַעֲמִיד עַל מִדּוֹתָיו.',
+    'הַקָּדוֹשׁ בָּרוּךְ הוּא אוֹהֵב לְמִי שֶׁאֵינוֹ כּוֹעֵס וּלְמִי שֶׁאֵינוֹ מַעֲמִיד עַל מִדּוֹתָיו.',
     '(ספר המידות, כעס ו)'
   ],
   [

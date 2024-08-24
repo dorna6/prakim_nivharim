@@ -88,13 +88,14 @@ class BlessingWidget extends StatelessWidget {
                     'רועי טמסוט בן שושנה',
                     'דור נחמיאס בן אסתר',
                     'מור  נחמיאס בת נורית',
+                    'ליאור בן מור',
                   ],
                 ),
                 const SizedBox(height: 15),
                 NamesContainer(
                   titleString: 'לעילוי נשמת',
                   names: [
-                    'מרים בת חווה',
+                    'מרים בת רחל',
                   ],
                 ),
               ],
@@ -112,15 +113,18 @@ class BlessingWidget extends StatelessWidget {
                     'רועי טמסוט בן שושנה',
                     'דור נחמיאס בן אסתר',
                     'מור  נחמיאס בת נורית',
+                    'אריאל אשר בן מרים',
+                    'שירז נועה בת מרים',
+                    'יהודה בן שירז',
                   ],
                 ),
                 const SizedBox(height: 15),
-                NamesContainer(
-                  titleString: 'לזיווג הגון',
-                  names: [
-                    'רות בת חוה',
-                  ],
-                ),
+                // NamesContainer(
+                //   titleString: 'לזיווג הגון',
+                //   names: [
+                //     'רות בת חוה',
+                //   ],
+                // ),
               ],
             ),
           ),
